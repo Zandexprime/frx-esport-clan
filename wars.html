@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRX | CLAN WARS</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .war-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+
+        .team-box img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--main-blue); }
+        .score { font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; margin: 0 20px; }
+        .vs-text { color: var(--main-blue); font-family: 'Orbitron'; font-size: 0.8rem; }
+        .win-tag { color: #4ade80; font-weight: bold; font-size: 12px; display: block; margin-top: 5px; }
+        .loss-tag { color: #f87171; font-weight: bold; font-size: 12px; display: block; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="brand"><span>{ 龙 }</span> FRX FRACTURE</div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="rankings.html">RANKINGS</a>
+            <a href="wars.html" class="active">WARS</a>
+        </div>
+    </nav>
+
+    <section style="padding: 100px 5%;">
+        <h2 class="section-title">WAR RECORDS</h2>
+        <p style="color: #666; margin-bottom: 40px;">Official history of FRX internal and external engagements.</p>
+
+        <div class="war-card">
+            <div class="team-box">
+                <img src="logo-c1.jpg" alt="Clan 1">
+                <h4 style="margin-top:10px;">FRX CLAN 1</h4>
+                <span class="win-tag">WINNER</span>
+            </div>
+
+            <div class="score-box">
+                <div class="vs-text">INTERNAL SCRIM</div>
+                <div class="score">4 - 1</div>
+                <div style="font-size: 10px; color: #444;">FEB 21, 2026</div>
+            </div>
+
+            <div class="team-box">
+                <img src="logo-c2.jpg" alt="Clan 2">
+                <h4 style="margin-top:10px;">FRX CLAN 2</h4>
+                <span class="loss-tag">DEFEAT</span>
+            </div>
+        </div>
+
+        <div class="war-card" style="border-left: 5px solid #ff4d4d;">
+            <div class="team-box">
+                <img src="logo-c1.jpg" alt="Clan 1">
+                <h4 style="margin-top:10px;">FRX ELITE</h4>
+            </div>
+
+            <div class="score-box">
+                <div class="vs-text" style="color: #ff4d4d;">EXTERNAL CLAN WAR</div>
+                <div class="score">10 - 0</div>
+                <div style="font-size: 10px; color: #444;">FEB 15, 2026</div>
+            </div>
+
+            <div class="team-box">
+                <img src="enemy-logo.jpg" alt="Enemy Clan">
+                <h4 style="margin-top:10px;">RANDOM CLAN</h4>
+                <span class="loss-tag">FLAWLESS VICTORY</span>
+            </div>
+        </div>
+
+    </section>
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+</body>
+</html>
