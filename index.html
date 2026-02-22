@@ -8,14 +8,20 @@
 </head>
 <body>
     <nav>
-        <div class="brand"><span>{ 龙 }</span> FRX FRACTURE</div>
-        <div>
-            <a href="index.html" class="active">HOME</a>
-            <a href="rankings.html">RANKINGS</a>
-            <a href="join.html">JOIN</a>
-            <a href="contact.html">CONTACT</a>
-        </div>
-    </nav>
+    <div class="brand">{ 龙 } FRX FRACTURE</div>
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="rankings.html">RANKINGS</a>
+        <a href="join.html">JOIN</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="wars.html">WAR RECORDS</a>
+    </div>
+</nav>
 
     <header class="hero">
         <h1>FRACTURE THE <span style="color: var(--main-blue);">MATRIX</span></h1>
@@ -31,5 +37,13 @@
             With branches across multiple sub-clans, we are building a dynasty in the server.
         </p>
     </section>
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
 </body>
 </html>
