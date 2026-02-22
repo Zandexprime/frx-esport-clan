@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRX | JOIN US</title>
+    <title>FRX | JOIN THE DIVISION</title>
     <link rel="stylesheet" href="style.css">
     
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    <link rel="manifest" href="images/site.webmanifest">
-    <meta name="theme-color" content="#00f2ff">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#00f2ff">
 </head>
 <body>
 
+    <div id="loader">
+        <div class="loader-content">
+            <div class="dragon-symbol">龙</div>
+            <div class="loader-bar"></div>
+            <p>ACCESSING ENLISTMENT PROTOCOLS...</p>
+        </div>
+    </div>
+
     <nav>
-        <div class="brand"><span>龙</span> FRX FRACTURE</div>
+        <div class="brand"><span>{ 龙 }</span> FRX FRACTURE</div>
         <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
         <div class="nav-links">
             <a href="index.html">HOME</a>
@@ -33,17 +34,72 @@
         </div>
     </nav>
 
-    <section class="join-page-content">
-        <h2 class="join-title">BECOME A LEADER</h2>
-        <p class="join-desc">Currently accepting applications for Clan 1 Vice, Clan 2/3 Leaders, and Trainers.</p>
+    <section style="padding: 120px 5% 60px;">
         
-        <a href="https://forms.gle/vkddYiBTMRknwTrW6" class="btn btn-blue leadership-btn">OPEN LEADERSHIP FORM</a>
-
-        <div class="tryout-box">
-            <h3>MEMBER TRYOUTS</h3>
-            <p>To join as a standard member, you must join our WhatsApp tryout group for a 1v1 assessment.</p>
-            <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo?mode=gi_t" class="btn btn-blue">JOIN TRYOUT GROUP</a>
+        <div class="leadership-promo">
+            <h2 class="section-title" style="margin-bottom: 10px;">BECOME A LEADER</h2>
+            <p style="color: #ccc; margin-bottom: 25px;">Currently accepting applications for Clan 1 Vice, Clan 2/3 Leaders, and Trainers.</p>
+            <a href="https://forms.gle/vkddYiBTMRknwTrW6" class="btn-main" target="_blank">OPEN LEADERSHIP FORM</a>
         </div>
+
+        <div class="tryout-briefing">
+            <div class="briefing-header">
+                <h2 class="section-title" style="margin-bottom: 5px; text-align: left;">MEMBER TRYOUTS</h2>
+                <p style="color: var(--main-blue); font-family: 'Orbitron'; font-size: 11px; letter-spacing: 2px;">THE ESCAPE MATRIX PROTOCOL</p>
+            </div>
+
+            <div class="tryout-content-grid">
+                <div class="data-block">
+                    <h3><i class="fas fa-list-check"></i> MISSION STATS</h3>
+                    <ul class="briefing-list">
+                        <li><strong>Schedule:</strong> 09:00 PM — 11:00 PM Daily</li>
+                        <li><strong>Matches:</strong> 2 SF Matches (No WP Map)</li>
+                        <li><strong>Required K/D:</strong> <span class="stat-tag">BR 2.0+</span> <span class="stat-tag">SD 2.0+</span></li>
+                        <li><strong>Performance:</strong> <span class="stat-tag">20+ KILLS</span></li>
+                    </ul>
+                </div>
+
+                <div class="action-block">
+                    <h3><i class="fab fa-whatsapp"></i> RECRUITMENT HUB</h3>
+                    <p style="font-size: 14px; line-height: 1.6; color: #bbb;">To join as a standard member, you must participate in our 1v1 assessment. Enter the group chat below to begin.</p>
+                    
+                    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="btn-main full-width" style="margin-top: 20px;">
+                        <i class="fas fa-door-open"></i> JOIN TRYOUT GROUP
+                    </a>
+                    
+                    <p class="warning-text">
+                        <i class="fas fa-exclamation-triangle"></i> Failure to pass after 2 attempts results in expulsion.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="requirements-grid" style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            
+            <div class="join-card">
+                <h3><i class="fas fa-shield-halved"></i> CLAN SPECS</h3>
+                <div class="clan-tier">
+                    <p><strong>CLAN 1:</strong> 3 Points | 1,200+ DMG | Competitive</p>
+                    <p style="margin-top: 10px;"><strong>CLAN 2:</strong> 2 Points | 1,000+ DMG | Semi-Comp</p>
+                </div>
+            </div>
+
+            <div class="join-card" style="border-color: #ff0050;">
+                <h3 style="color: #ff0050;"><i class="fas fa-ban"></i> BANNED GEAR</h3>
+                <div class="banned-tags" style="margin-top: 15px;">
+                    <span>NO 012</span>
+                    <span>NO D UZI</span>
+                    <span>NO M118 (FLAME SHELLS)</span>
+                </div>
+                <p style="font-size: 10px; color: #888; margin-top: 15px;">Usage of restricted gear results in immediate tryout failure.</p>
+            </div>
+
+        </div>
+
+        <div class="inactivity-bar">
+            <p><i class="fas fa-user-slash"></i> <strong>INACTIVITY ALERT:</strong> 2+ DAYS INACTIVE = IMMEDIATE EXPULSION. NO COMPLAINTS.</p>
+        </div>
+
     </section>
 
     <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
@@ -51,30 +107,22 @@
     </a>
 
     <footer>
-        <div class="social-links">
-            <a href="https://discord.gg/nYF2F32E8T" class="social-icon" target="_blank">
-                <i class="fab fa-discord"></i>
-                <span>Discord</span>
-            </a>
-            <a href="https://www.tiktok.com/@fracture_esports" class="social-icon" target="_blank">
-                <i class="fab fa-tiktok"></i>
-                <span>TikTok</span>
-            </a>
-            <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="social-icon" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-                <span>WhatsApp</span>
-            </a>
-        </div>
         <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
     </footer>
 
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        // Navigation
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        // Loader
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                document.getElementById("loader").classList.add("loader-hidden");
+            }, 800); 
         });
     </script>
 </body>
+</html>
 </html>
