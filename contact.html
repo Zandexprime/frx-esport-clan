@@ -3,30 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRX | CONTACT</title>
-    <link rel="stylesheet" href="style.css">
+    <title>FRX | THE NETWORK</title>
     
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="theme-color" content="#00f2ff">
+
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .contact-card h3 {
+            font-family: 'Orbitron';
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .contact-card p {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Tactical Button Styling */
+        .contact-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        /* Theme Borders & Buttons */
+        .discord-border:hover { border-color: #5865F2; box-shadow: 0 0 20px rgba(88, 101, 242, 0.2); }
+        .discord-bg { background: #5865F2; color: #fff; }
+        
+        .whatsapp-border:hover { border-color: #25d366; box-shadow: 0 0 20px rgba(37, 211, 102, 0.2); }
+        .whatsapp-bg { background: #25d366; color: #000; }
+
+        .tiktok-border:hover { border-color: #ff0050; box-shadow: 0 0 20px rgba(255, 0, 80, 0.2); }
+        .tiktok-bg { background: #ff0050; color: #fff; }
+
+        .contact-btn:hover {
+            filter: brightness(1.2);
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
     <div id="loader">
-        <div class="loader-content">
-            <div class="dragon-symbol">龙</div>
-            <div class="loader-bar"></div>
-            <p>CONNECTING TO FRX...</p>
-        </div>
+        <div style="font-size: 3.5rem; color: var(--neon-blue); margin-bottom: 15px;">龙</div>
+        <p style="letter-spacing: 5px; font-size: 0.6rem; color: var(--neon-blue);">ESTABLISHING UPLINK...</p>
     </div>
     
     <nav>
         <div class="brand"><span>龙</span> FRX FRACTURE</div>
-        <div class="hamburger">
+        <div class="hamburger" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </div>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="index.html">HOME</a>
             <a href="leaderboard.html">LEADERBOARD</a>
             <a href="join.html">JOIN US</a>
@@ -35,32 +115,39 @@
         </div>
     </nav>
 
-    <section style="padding: 120px 10% 50px;">
-        <h2 class="section-title">THE NETWORK</h2>
+    <section style="padding: 120px 8% 80px;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 class="section-title">THE NETWORK</h2>
+            <p style="color: var(--neon-blue); font-family: 'Orbitron'; font-size: 0.6rem; letter-spacing: 4px; margin-top: -15px;">CONNECT WITH THE DIVISION</p>
+        </div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <div class="contact-grid">
             
             <div class="contact-card discord-border">
                 <i class="fab fa-discord contact-icon" style="color: #5865F2;"></i>
                 <h3>DISCORD</h3>
-                <p>Main Communication Hub & Community Events.</p>
-                <a href="https://discord.gg/nYF2F32E8T" class="contact-btn discord-bg">JOIN SERVER</a>
+                <p>Main Command Center for Scrims, Strategy, and Community Events.</p>
+                <a href="https://discord.gg/nYF2F32E8T" class="contact-btn discord-bg" target="_blank">JOIN SERVER</a>
             </div>
 
             <div class="contact-card whatsapp-border">
                 <i class="fab fa-whatsapp contact-icon" style="color: #25d366;"></i>
                 <h3>WHATSAPP</h3>
-                <p>Fast Recruitment, Tryouts & Clan Updates.</p>
-                <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="contact-btn whatsapp-bg">OPEN CHAT</a>
+                <p>Instant Recruitment Hub, Tryout scheduling & Rapid updates.</p>
+                <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="contact-btn whatsapp-bg" target="_blank">OPEN CHAT</a>
             </div>
 
             <div class="contact-card tiktok-border">
-                <i class="fab fa-tiktok contact-icon" style="color: #ff0050;"></i>
+                <i class="fab fa-tiktok contact-icon" style="color: #fff;"></i>
                 <h3>TIKTOK</h3>
-                <p>Elite Gameplay Clips & Fracture Highlights.</p>
-                <a href="https://www.tiktok.com/@fracture_esports" class="contact-btn tiktok-bg">FOLLOW FRX</a>
+                <p>Elite Highlights, Montage Drops & Fracture Division Clips.</p>
+                <a href="https://www.tiktok.com/@fracture_esports" class="contact-btn tiktok-bg" target="_blank">FOLLOW FRX</a>
             </div>
 
+        </div>
+
+        <div style="margin-top: 60px; text-align: center; opacity: 0.5;">
+            <p style="font-size: 0.6rem; letter-spacing: 2px; font-family: 'Orbitron';">ENCRYPTED COMMUNICATION CHANNELS ACTIVE</p>
         </div>
     </section>
 
@@ -69,16 +156,13 @@
     </a>
 
     <footer>
-        <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
+        <p style="text-align: center; padding: 40px; color: #444; font-size: 0.6rem; letter-spacing: 2px; font-weight: 800;">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
     </footer>
 
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        function toggleMenu() { 
+            document.getElementById('navLinks').classList.toggle('active');
+        }
 
         // Loader logic
         window.addEventListener("load", () => {
@@ -87,5 +171,6 @@
             }, 800); 
         });
     </script>
+    
 </body>
 </html>

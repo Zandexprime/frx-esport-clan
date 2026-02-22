@@ -6,123 +6,490 @@
     <title>FRX FRACTURE | NIGERIA'S ELITE BLOODSTRIKE CLAN</title>
     
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    <link rel="manifest" href="images/site.webmanifest">
-    <meta name="theme-color" content="#3b82f6">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --main-blue: #00f2ff;
+            --bg-dark: #0a0c10;
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: #fff; font-family: 'Outfit', sans-serif; overflow-x: hidden; width: 100%; }
+
+        /* --- BACKGROUND --- */
+        .fixed-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('images/hero-bg.jpg') no-repeat center center;
+            background-size: cover; z-index: -2; filter: blur(8px);
+            animation: breathe 20s infinite alternate ease-in-out;
+        }
+        @keyframes breathe { from { transform: scale(1); } to { transform: scale(1.1); } }
+        
+        .hero-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(10, 12, 16, 0.4) 0%, rgba(10, 12, 16, 0.9) 100%);
+            z-index: -1;
+        }
+
+        /* --- NAV --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; position: fixed; width: 100%; z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+        }
+        .brand { font-weight: 700; letter-spacing: 4px; font-size: 1.1rem; text-transform: uppercase; }
+        .brand span { color: var(--neon-blue); }
+
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { 
+            text-decoration: none; color: #fff; margin-left: 25px;
+            font-size: 0.75rem; opacity: 0.7; transition: 0.3s;
+            position: relative; font-weight: 700; letter-spacing: 1px;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--neon-blue); opacity: 1; }
+
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 101; }
+        .hamburger span { width: 25px; height: 2px; background: #fff; transition: 0.3s; }
+
+        /* --- HERO --- */
+        .hero { 
+            min-height: 100vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; text-align: center; padding: 100px 8%; 
+        }
+        .hero-content { width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
+        .hero h1 { font-size: clamp(2.2rem, 8vw, 5rem); line-height: 1; margin-bottom: 25px; font-weight: 800; text-transform: uppercase; }
+        .hero p { max-width: 650px; font-size: clamp(0.9rem, 2vw, 1.1rem); color: rgba(255,255,255,0.8); margin-bottom: 35px; font-weight: 300; line-height: 1.6; }
+
+        .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; width: 100%; }
+        .btn { 
+            padding: 14px 28px; font-size: 0.65rem; text-decoration: none; 
+            border: 1px solid var(--border-light); color: #fff; transition: 0.4s;
+            letter-spacing: 2px; border-radius: 50px; font-weight: 800; text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .btn-filled { background: var(--neon-blue); color: #000; border: none; }
+        .btn:hover { border-color: var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); transform: translateY(-3px); }
+
+        /* --- NEWS SECTION --- */
+        .news-section { padding: 100px 8%; background: rgba(5, 6, 8, 0.9); border-top: 1px solid var(--border-light); }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { color: var(--neon-blue); letter-spacing: 5px; text-transform: uppercase; font-size: 1.8rem; margin-bottom: 10px; }
+        .section-title p { color: #555; font-size: 0.75rem; letter-spacing: 3px; font-weight: 700; }
+
+        .news-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; max-width: 1200px; margin: 0 auto; 
+        }
+        .news-card {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-light);
+            padding: 30px; position: relative; transition: 0.4s; overflow: hidden;
+        }
+        .news-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0;
+            background: var(--neon-blue); transition: 0.4s;
+        }
+        .news-card:hover { background: rgba(0, 242, 255, 0.03); transform: translateY(-5px); border-color: rgba(0, 242, 255, 0.3); }
+        .news-card:hover::before { height: 100%; }
+        
+        .news-tag {
+            display: inline-block; font-size: 0.6rem; font-weight: 800; padding: 4px 10px;
+            border: 1px solid var(--neon-blue); color: var(--neon-blue); margin-bottom: 20px; letter-spacing: 1px;
+        }
+        .news-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-bottom: 15px; letter-spacing: 1px; color: #fff; }
+        .news-card p { font-size: 0.9rem; color: #888; line-height: 1.6; margin-bottom: 25px; }
+        .news-date { font-size: 0.65rem; color: #444; font-weight: 700; letter-spacing: 1px; }
+
+        /* --- ABOUT SECTION --- */
+        .about-section { 
+            padding: 80px 8%; 
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            background: rgba(10,12,16,0.85); backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-light);
+        }
+        .about-text { max-width: 800px; margin-bottom: 50px; }
+        
+        .stat-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; width: 100%; max-width: 1100px;
+        }
+        .stat-card { 
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-light);
+            padding: 40px 20px; border-radius: 12px; transition: 0.3s;
+        }
+        .stat-card h3 { color: var(--neon-blue); font-size: 2.2rem; font-weight: 800; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; }
+        .stat-card span { font-size: 0.7rem; color: #777; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+
+        /* --- POP-UP MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 3000; opacity: 0; visibility: hidden; transition: 0.5s;
+            backdrop-filter: blur(10px);
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-box {
+            background: #0a0c10; border: 1px solid var(--neon-blue);
+            width: 90%; max-width: 450px; padding: 40px; position: relative;
+            text-align: center; box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);
+        }
+        .modal-close {
+            position: absolute; top: 15px; right: 20px; color: #555;
+            font-size: 1.5rem; cursor: pointer; transition: 0.3s;
+        }
+        .modal-close:hover { color: var(--neon-blue); }
+        .modal-header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .modal-header h3 { font-size: 0.7rem; letter-spacing: 4px; color: var(--neon-blue); font-family: 'Orbitron'; }
+        .pulse-dot {
+            width: 8px; height: 8px; background: var(--neon-blue); border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-blue); animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .modal-body h2 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .modal-body p { color: #888; line-height: 1.6; font-size: 0.9rem; margin-bottom: 25px; }
+
+        /* --- WHATSAPP PILL --- */
+        .whatsapp-pill {
+            margin-top: 30px; display: inline-flex; align-items: center; gap: 12px;
+            background: rgba(37, 211, 102, 0.1); padding: 12px 25px; border-radius: 50px;
+            border: 1px solid rgba(37, 211, 102, 0.3); color: #25d366; text-decoration: none;
+            transition: 0.3s; font-weight: 700; font-size: 0.75rem; letter-spacing: 1px;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 60px 8%; text-align: center; border-top: 1px solid var(--border-light); background: #050608; }
+        .social-links-footer { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
+        .social-icon { color: #fff; text-decoration: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.65rem; opacity: 0.5; transition: 0.3s; }
+        .social-icon:hover { opacity: 1; color: var(--neon-blue); }
+
+        /* --- LOADER --- */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 2000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.8s ease;
+        }
+        .loader-hidden { opacity: 0; visibility: hidden; }
+
+        /* --- MOBILE BREAKPOINTS --- */
+        @media (max-width: 768px) {
+            nav { padding: 15px 5%; }
+            .hamburger { display: flex; }
+            .nav-links { 
+                display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+                background: #0a0c10; flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 0; font-size: 1.2rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .btn { width: 80%; max-width: 300px; padding: 16px; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
     <div id="loader">
-        <div class="loader-content">
-            <div class="dragon-symbol">龙</div>
-            <div class="loader-bar"></div>
-            <p>INITIALIZING FRX SYSTEM...</p>
+        <div style="font-size: 3.5rem; color: var(--neon-blue); margin-bottom: 15px; text-shadow: 0 0 20px var(--neon-blue);">龙</div>
+        <p style="letter-spacing: 5px; font-size: 0.6rem; color: var(--neon-blue); font-weight: 700;">SYSTEM ONLINE</p>
+    </div>
+
+    <div id="newsModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-close" onclick="closeModal()">&times;</div>
+            <div class="modal-header">
+                <span class="pulse-dot"></span>
+                <h3>BROADCAST</h3>
+            </div>
+            <div class="modal-body">
+                <h2 id="updateTitle">FETCHING INTEL...</h2>
+                <p id="updateText">Loading latest transmission from headquarters...</p>
+            </div>
+            <div class="modal-footer">
+                <a id="updateLink" href="#" class="btn btn-filled" style="font-size: 0.6rem; padding: 10px 20px;">ACCESS</a>
+            </div>
         </div>
     </div>
 
+    <div class="fixed-bg"></div>
+    <div class="hero-overlay"></div>
+
     <nav>
-        <div class="brand"><span>龙</span> FRX FRACTURE</div>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="brand"><span>龙</span> FRX Fracture</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
         </div>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="index.html" class="active">HOME</a>
             <a href="leaderboard.html">LEADERBOARD</a> 
             <a href="join.html">JOIN US</a>
             <a href="contact.html">CONTACT</a>
             <a href="wars.html">WAR RECORDS</a>
         </div>
+        <div class="news-ticker">
+    <div class="ticker-label">LIVE FEED</div>
+    <div class="ticker-wrap">
+        <div class="ticker-content" id="news-ticker-content">
+            </div>
+    </div>
+</div>
+
+<script src="news-data.js"></script>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
-            <h1>FRACTURE THE <span style="color: var(--main-blue);">MATRIX</span></h1>
-            <p>Nigeria's elite BloodStrike organization. We specialize in tactical dominance and individual skill. The evolution of the 龙 legacy starts here.</p>
-            <div class="hero-btns" style="margin-top: 30px;">
-                <a href="join.html" class="btn-main">JOIN CLAN</a>
-                <a href="leaderboard.html" class="btn-outline">VIEW LEADERS</a>
+            <h1>Fracture the <span style="color: var(--main-blue); text-shadow: 0 0 10px var(--neon-blue);">Matrix</span></h1>
+            <p>Nigeria's elite BloodStrike clan. We specialize in tactical dominance and individual skill. The evolution of the 龙 legacy starts here.</p>
+            <div class="btn-group">
+                <a href="leaderboard.html" class="btn">View Leaders</a>
+                <a href="join.html" class="btn btn-filled">Join The Clan</a>
+                <a href="wars.html" class="btn">War Records</a>
             </div>
         </div>
     </header>
 
-    <section id="about" style="padding: 100px 5%; background: linear-gradient(to bottom, #050505, #0a0a0a);">
-        <h2 class="section-title">ABOUT US</h2>
-        <div class="about-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; margin-top: 40px;">
-            <div class="about-text">
-                <p style="font-size: 1.2rem; color: #ccc; line-height: 1.8; margin-bottom: 20px;">
-                    FRX Fracture is more than a clan—it is a professional environment for the best players in the region. 
-                </p>
-                <p style="font-size: 1.1rem; color: #888; line-height: 1.8;">
-                    We operate on a <span style="color: var(--main-blue); font-weight: bold;">weekend-only schedule</span> to ensure maximum intensity and competitive focus. 
-                    With branches across multiple sub-clans, we are building a dynasty in the server.
-                </p>
+    <section id="about" style="padding: 100px 8%; position: relative; background: rgba(0,0,0,0.5);">
+    
+    <div class="about-header" style="text-align: center; margin-bottom: 80px;">
+        <h1 style="font-family: 'Orbitron'; letter-spacing: 8px; color: #fff; margin-bottom: 10px;">WELCOME TO THE SYSTEM: <span style="color: var(--neon-blue);">FRX FRACTURE ⚡</span></h1>
+        <blockquote style="border: none; font-style: italic; color: var(--neon-blue); font-size: 1.1rem; opacity: 0.8;">
+            "WE DON'T JUST PLAY; WE FRACTURE THE MATRIX. DOMINANCE IS THE ONLY OPTION."
+        </blockquote>
+        <p style="max-width: 800px; margin: 30px auto; line-height: 1.8; color: #ccc; font-size: 0.9rem;">
+            FRX Fracture is BloodStrike clan, a professional environment forged for the region's top-tier operators. We aren't just a clan; we are a high-performance gaming division that prioritizes tactical discipline, individual skill evolution, and absolute respect.
+        </p>
+    </div>
+
+    <div class="system-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+        
+        <div class="protocol-card">
+            <h3><i class="fas fa-shield-alt"></i> THE HIGH TABLE</h3>
+            <p class="card-subtitle">ADMINISTRATOR BOARD // SCOUTING ELITE TALENT</p>
+            <ul class="leader-list">
+                <li><span class="rank">GENERAL LEADER:</span> <span class="name">龙 zandex</span></li>
+                <li class="vacant"><span class="rank">CLAN 2 LEADER:</span> [VACANT]</li>
+                <li class="vacant"><span class="rank">VICE LEADERS:</span> [VACANT]</li>
+                <li class="vacant"><span class="rank">COMMUNITY LEADS:</span> [VACANT]</li>
+                <li class="vacant"><span class="rank">MODERATION:</span> [VACANT]</li>
+            </ul>
+        </div>
+
+        <div class="protocol-card">
+            <h3><i class="fas fa-calendar-alt"></i> OPERATIONS SCHEDULE</h3>
+            <p class="card-subtitle">PEAK PERFORMANCE PROTOCOL</p>
+            <div class="schedule-grid">
+    <div class="sched-item">
+        <strong>MON | <span class="local-time" data-time="22:00">22:00</span></strong> 
+        <span>SF Private Training</span>
+    </div>
+    <div class="sched-item">
+        <strong>WED | <span class="local-time" data-time="22:00">22:00</span></strong> 
+        <span>Chaos Ops (Fun Rooms)</span>
+    </div>
+    <div class="sched-item">
+        <strong>FRI | <span class="local-time" data-time="22:00">22:00</span></strong> 
+        <span style="color: #ff4d4d;">(coming soon) TEAM WARS 🔥</span>
+    </div>
+    <div class="sched-item">
+        <strong>SAT/SUN | <span class="local-time" data-time="23:00">23:00</span></strong> 
+        <span>Elite 1v1 Training</span>
+    </div>
+    <div class="sched-item">
+        <strong>TBA| <span class="local-time" data-time="--:--">23:00</span></strong> 
+        <span style="color: #ff4d4d;">(coming soon) Tournament</span>
+    </div>
+</div>
+<p id="timezone-viewer" style="font-size: 0.6rem; color: var(--neon-blue); margin-top: 10px; opacity: 0.6;"></p>
+        </div>
+
+        <div class="protocol-card" style="grid-column: span 2;">
+            <h3><i class="fas fa-dragon"></i> THE FRX CORE VALUES (THE CODE)</h3>
+            <div class="values-flex">
+                <div class="value-box"><strong>EQUALITY</strong><p>Every opinion counts. We grow as one unit.</p></div>
+                <div class="value-box"><strong>RESPECT</strong><p>Honor the Chain of Command.</p></div>
+                <div class="value-box"><strong>ZERO TOXICITY</strong><p>We win with silence and skill.</p></div>
+                <div class="value-box"><strong>HONOR</strong><p>Safe environment for all members.</p></div>
             </div>
-            <div class="about-stats" style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid var(--border); text-align: center;">
-                <div style="margin-bottom: 25px;">
-                    <span style="display: block; font-family: 'Orbitron'; color: var(--main-blue); font-size: 2.5rem;">100%</span>
-                    <span style="color: #666; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Tactical Focus</span>
+        </div>
+
+    </div>
+
+    <div class="alliance-bar">
+        <p>🤝 <strong>GLOBAL ALLIANCE:</strong> STRATEGIC PARTNERSHIP WITH <span style="color: var(--neon-blue);">NEXUS ESPORTS</span> (LEADER: ＪＭＡＲ࿋𝕏Ｓ☬)</p>
+    </div>
+</section>
+
+   <section id="gallery" style="padding: 60px 8%; position: relative;">
+    <div class="gallery-header" style="border-left: 4px solid var(--neon-blue); padding-left: 20px; margin-bottom: 40px;">
+        <h2 style="font-family: 'Orbitron'; letter-spacing: 5px; text-transform: uppercase; margin: 0;">clan Archive</h2>
+        <p style="font-size: 0.6rem; color: var(--neon-blue); opacity: 0.8;">[ STATUS: ENCRYPTED // SELECT FILE TO VIEW ]</p>
+    </div>
+
+    <div id="gallery-grid" class="game-grid">
+        </div>
+</section>
+    <script src="gallery-data.js"></script>
+
+
+</div>
+    <section class="news-section">
+        <div class="section-title">
+            <h2>Clan Intel</h2>
+            <p>BROADCASTING RECENT OPERATIONS</p>
+        </div>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-tag">WAR RECORD</div>
+                <h3>SCRIM STREAK HITS 0-0</h3>
+                <p>-----------------------------------------------------------------------------------------</p>
+                <span class="news-date">FEB 22, 2026</span>
+            </div>
+            <div class="news-card">
+                <div class="news-tag">SYSTEM UPDATE</div>
+                <div class="recruit-container">
+            <div id="recruit-badge" class="recruit-badge">
                 </div>
-                <div>
-                    <span style="display: block; font-family: 'Orbitron'; color: gold; font-size: 2.5rem;">WEEKEND</span>
-                    <span style="color: #666; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Training Only</span>
-                </div>
+        </div>
+                <h3>RECRUITMENT PROTOCOL</h3>          
+                <p>We are currently scouting players. Requirements: 2.15+ KD and active Discord participation.</p>
+                <span class="news-date">FEB 20, 2026</span>
+                
+            </div>
+            <div class="news-card">
+                <div class="news-tag">TOURNAMENT</div>
+                <div class="recruit-container">
+    <div id="recruit-badge"></div>
+    <div id="reg-badge"></div>
+</div>
+                <h3>BATTLE FOR THE TOP</h3>
+                <p>Preparation for the upcoming scrim will soon open. Team training sessions start this Friday at 21:00 WAT.</p>
+                <span class="news-date">FEB 18, 2026</span>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="social-links">
-            <a href="https://discord.gg/nYF2F32E8T" class="social-icon" target="_blank">
-                <i class="fab fa-discord"></i>
-                <span>Discord</span>
-            </a>
-            <a href="https://www.tiktok.com/@fracture_esports" class="social-icon" target="_blank">
-                <i class="fab fa-tiktok"></i>
-                <span>TikTok</span>
-            </a>
-            <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="social-icon" target="_blank">
+    <section class="leaderboard-section">
+    <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+        <h2 style="color: var(--neon-blue); letter-spacing: 5px; text-transform: uppercase;">Top Performers</h2>
+        <p style="color: #444; font-size: 0.7rem; letter-spacing: 3px;">RANKINGS UPDATED WEEKLY</p>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Rankings Ratio</th>
+                    <th>Rank</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+                </tbody>
+        </table>
+    </div>
+</section>
+
+<script src="leaderboard-data.js"></script>
+
+    <section class="about-section">
+        <div class="about-text">
+            <h2 style="color: var(--neon-blue); letter-spacing: 4px; margin-bottom: 25px; text-transform: uppercase;">Tactical Excellence</h2>
+            <p style="font-size: 1.1rem; color: #ccc; margin-bottom: 20px; line-height: 1.8; font-weight: 300;">FRX Fracture is a professional environment for the best players in the region.</p>
+            
+            <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="whatsapp-pill">
                 <i class="fab fa-whatsapp"></i>
-                <span>WhatsApp</span>
+                <span>JOIN THE COMMUNITY</span>
             </a>
         </div>
-        <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
+
+        <div class="stat-grid">
+            <div class="stat-card"><h3>100%</h3><span>Tactical focus</span></div>
+            <div class="stat-card"><h3>WEEKEND</h3><span>Training only</span></div>
+            <div class="stat-card"><h3>2.15</h3><span>Min KD Req</span></div>
+        </div>
+    </section>
+
+    <footer>
+        <section id="leadership" style="padding: 80px 8% 50px;">
+    <div style="text-align: center; margin-bottom: 50px;">
+        <h2 class="section-title">COMMAND HIERARCHY</h2>
+        <p style="color: var(--neon-blue); font-family: 'Orbitron'; font-size: 0.6rem; letter-spacing: 4px; margin-top: -15px;">DIVISION ADMINISTRATION</p>
+    </div>
+
+    <div id="leader-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+    </div>
+</section>
+
+<script src="leader-data.js"></script>
+        <div class="social-links-footer">
+            <a href="https://discord.gg/nYF2F32E8T" class="social-icon" target="_blank"><i class="fab fa-discord"></i><span>Discord</span></a>
+            <a href="https://www.tiktok.com/@fracture_esports" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i><span>TikTok</span></a>
+            <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+        </div>
+        <p style="font-size: 0.6rem; color: #444; letter-spacing: 3px; font-weight: 700;">© 2026 FRX FRACTURE | ELITE DIVISION</p>
     </footer>
 
-    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<div id="newsModal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-close" onclick="closeModal()">&times;</div>
+        <div class="modal-header">
+            <i class="fas fa-satellite-dish" style="font-size: 0.7rem; color: var(--neon-blue);"></i>
+            <h3>INCOMING INTEL</h3>
+        </div>
+        <div class="modal-body">
+            <h2 id="updateTitle">Updating...</h2>
+            <p id="updateText">Standby for transmission.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" id="updateLink" class="btn btn-filled">READ MORE</a>
+        </div>
+    </div>
+</div>
+
+<script src="news-config.js"></script>
+    <script src="news-config.js"></script>
 
     <script>
-        // Navigation Logic
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        function toggleMenu() { 
+            document.getElementById('navLinks').classList.toggle('active');
+        }
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        function closeModal() {
+            document.getElementById('newsModal').classList.remove('active');
+        }
 
-        // Close menu when link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-        
-        // Pre-loader Logic
-        window.addEventListener("load", function() {
-            const loader = document.getElementById("loader");
-            setTimeout(() => {
-                loader.classList.add("loader-hidden");
-            }, 1000); 
+        window.addEventListener("load", () => {
+            // Hide loader
+            setTimeout(() => { 
+                document.getElementById("loader").classList.add("loader-hidden"); 
+            }, 1000);
+
+            // Handle Pop-up News from the JS file
+            if (typeof CLAN_NEWS !== 'undefined' && CLAN_NEWS.active) {
+                document.getElementById('updateTitle').innerText = CLAN_NEWS.title;
+                document.getElementById('updateText').innerText = CLAN_NEWS.message;
+                document.getElementById('updateLink').innerText = CLAN_NEWS.buttonText;
+                document.getElementById('updateLink').href = CLAN_NEWS.buttonLink;
+                
+                // Show modal after a short delay
+                setTimeout(() => {
+                    document.getElementById('newsModal').classList.add('active');
+                }, 2500);
+            }
         });
     </script>
+    <div id="lightbox" onclick="this.style.display='none'" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(15px);">
+    <div id="lightbox-content" style="width: 80%; max-width: 900px; border: 1px solid var(--neon-blue); box-shadow: 0 0 50px rgba(0,242,255,0.3);"></div>
+</div>
+</div>
+
 </body>
 </html>

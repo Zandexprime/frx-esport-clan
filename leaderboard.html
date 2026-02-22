@@ -54,15 +54,15 @@
 
         <div class="leader-section">
             <div class="leader-card zandex-card">
-                <img src="images/zandex.jpg" class="leader-img-circle" alt="Leader" onerror="this.src='images/zandex.jpg'">
+                <img src="images/zandex.jpeg" class="leader-img-circle" alt="Leader" onerror="this.src='images/zandex.jpg'">
                 <h3 class="player-name">龙 Zandex</h3>
-                <p style="color: gold; font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">CLAN LEADER</p>
+                <p style="color: rgb(0, 34, 255); font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">CLAN LEADER</p>
             </div>
             
             <div class="leader-card vice-card">
-                <img src="images/zandex.jpg" class="leader-img-circle" alt="Vice Leader">
+                <img src="images/vice.jpg" class="leader-img-circle" alt="Vice Leader">
                 <h3 class="player-name">龙 Prime</h3>
-                <p style="color: silver; font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">VICE LEADER</p>
+                <p style="color: rgb(119, 4, 208); font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">VICE LEADER</p>
             </div>
         </div>
 
@@ -79,7 +79,7 @@
             
             <div class="list-row player-item clickable" onclick="openProfile('GlORY', '13,155', 'LEGEND II', 'images/glory.jpg')">
                 <div class="list-rank">#02</div>
-                <img src="images/glory.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
+                <img src="images/Members/2.jpg" class="list-img" loading="lazy" onerror="this.src='images/Members/2.jpg'">
                 <div class="list-name">龙 GlORY</div>
                 <div class="list-stats">
                     <span class="list-points">13,155</span>
@@ -87,9 +87,9 @@
                 </div>
             </div>
 
-            <div class="list-row player-item clickable" onclick="openProfile('Death Note', '12,900', 'LEGEND II', 'images/deathnote.jpg')">
+            <div class="list-row player-item clickable" onclick="openProfile('Death Note', '12,900', 'LEGEND II', 'images/dethnote.jpg')">
                 <div class="list-rank">#03</div>
-                <img src="images/deathnote.jpg" class="list-img" loading="lazy" onerror="this.src='images/deathnote.jpg'">
+                <img src="images/dethnote.jpg" class="list-img" loading="lazy" onerror="this.src='images/dethnote.jpg'">
                 <div class="list-name">龙 Death Note</div>
                 <div class="list-stats">
                     <span class="list-points">12,900</span>
@@ -137,9 +137,9 @@
                 </div>
             </div>
 
-            <div class="list-row player-item clickable" onclick="openProfile('nemÉs1x', '8,900', 'DIAMOND I', 'images/Members/8.jpg')">
+            <div class="list-row player-item clickable" onclick="openProfile('nemÉs1x', '8,900', 'DIAMOND I', 'images/glory.jpg')">
                 <div class="list-rank">#08</div>
-                <img src="images/Members/8.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
+                <img src="images/glory.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">nemÉs1x</div>
                 <div class="list-stats">
                     <span class="list-points">8,900</span>
@@ -183,77 +183,97 @@
     </a>
 
     <script>
-        // 1. Optimized Search Logic
-        function filterPlayers() {
-            const input = document.getElementById('playerSearch').value.toLowerCase().trim();
-            const players = document.querySelectorAll('.player-item');
-            players.forEach(player => {
-                const name = player.querySelector('.list-name').innerText.toLowerCase();
-                player.style.display = name.includes(input) ? "grid" : "none";
-            });
+           // 1. Optimized Search (Handles Symbols & Spaces better)
+    function filterPlayers() {
+        const input = document.getElementById('playerSearch').value.toLowerCase().trim();
+        const players = document.querySelectorAll('.player-item');
+        
+        players.forEach(player => {
+            const name = player.querySelector('.list-name').innerText.toLowerCase();
+            // This checks if the search text exists anywhere in the name
+            if (name.includes(input)) {
+                player.style.display = "grid";
+            } else {
+                player.style.display = "none";
+            }
+        });
+    }
+
+    // 2. Clan Toggle Logic
+    function showClan(num) {
+        const c1 = document.getElementById('clan1-list');
+        const c2 = document.getElementById('clan2-list');
+        const btns = document.querySelectorAll('.toggle-btn');
+        
+        if (num === 1) {
+            c1.style.display = 'flex';
+            c2.style.display = 'none';
+            btns[0].classList.add('active');
+            btns[1].classList.remove('active');
+        } else {
+            c1.style.display = 'none';
+            c2.style.display = 'flex';
+            btns[0].classList.remove('active');
+            btns[1].classList.add('active');
         }
+    }
 
-        // 2. Clan Toggle Logic
-        function showClan(num) {
-            const c1 = document.getElementById('clan1-list');
-            const c2 = document.getElementById('clan2-list');
-            const btns = document.querySelectorAll('.toggle-btn');
-            c1.style.display = (num === 1) ? 'flex' : 'none';
-            c2.style.display = (num === 2) ? 'flex' : 'none';
-            btns[0].classList.toggle('active', num === 1);
-            btns[1].classList.toggle('active', num === 2);
-        }
+    // 3. Profile Logic (Enhanced for reliability)
+    function openProfile(name, points, tier, img) {
+        const modal = document.getElementById("playerModal");
+        const modalContainer = document.getElementById("modalContainer");
+        const modalData = document.getElementById("modalData");
 
-        // 3. Optimized Profile Logic
-        function openProfile(name, points, tier, img) {
-            const modal = document.getElementById("playerModal");
-            const modalContainer = document.getElementById("modalContainer");
-            const modalData = document.getElementById("modalData");
-
-            modalContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.2)), url('${img}')`;
-            
-            modalData.innerHTML = `
-                <div class="landscape-profile-content">
-                    <div class="profile-main-info">
-                        <img src="${img}" class="profile-avatar-square" onerror="this.src='images/default.jpg'">
-                        <div class="profile-text">
-                            <h2 style="font-family: 'Orbitron'; color: #fff; margin: 0;">${name}</h2>
-                            <p style="color: #00f2ff; font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">ACTIVE MEMBER</p>
-                        </div>
+        // Apply background with a fallback check
+        modalContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.2)), url('${img}')`;
+        
+        modalData.innerHTML = `
+            <div class="landscape-profile-content">
+                <div class="profile-main-info">
+                    <img src="${img}" class="profile-avatar-square" onerror="this.src='images/default.jpg'">
+                    <div class="profile-text">
+                        <h2 style="font-family: 'Orbitron'; color: #fff; margin: 0;">${name}</h2>
+                        <p style="color: #00f2ff; font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">FRX OFFICIAL MEMBER</p>
                     </div>
-                    <div class="profile-stats-landscape">
-                        <div class="stat-box">
-                            <p>POINTS</p>
-                            <span>${points}</span>
-                        </div>
-                        <div class="stat-box">
-                            <p>RANK</p>
-                            <span>${tier}</span>
-                        </div>
-                    </div>
-                    <button class="btn-main-small" onclick="closeModal()">BACK TO LIST</button>
                 </div>
-            `;
-            modal.style.display = "flex";
-        }
+                <div class="profile-stats-landscape">
+                    <div class="stat-box">
+                        <p>POINTS</p>
+                        <span>${points}</span>
+                    </div>
+                    <div class="stat-box">
+                        <p>RANK</p>
+                        <span>${tier}</span>
+                    </div>
+                </div>
+                <button class="btn-main-small" onclick="closeModal()">BACK TO LIST</button>
+            </div>
+        `;
+        modal.style.display = "flex";
+    }
 
-        function closeModal() {
-            document.getElementById("playerModal").style.display = "none";
-        }
+    function closeModal() {
+        document.getElementById("playerModal").style.display = "none";
+    }
 
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("playerModal")) closeModal();
-        }
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById("playerModal");
+        if (event.target == modal) closeModal();
+    }
 
-        document.querySelector('.hamburger').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
+    // Mobile Nav
+    document.querySelector('.hamburger').addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.toggle('active');
+    });
 
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                document.getElementById("loader").classList.add("loader-hidden");
-            }, 800); 
-        });
+    // Loader
+    window.addEventListener("load", () => {
+        setTimeout(() => {
+            document.getElementById("loader").classList.add("loader-hidden");
+        }, 1000); 
+    });
+
     </script>
 </body>
 </html>
