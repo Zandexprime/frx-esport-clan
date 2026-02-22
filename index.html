@@ -2,48 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRX FRACTURE | HOME</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
-    <div class="brand">{ 龙 } FRX FRACTURE</div>
-    <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="nav-links">
-        <a href="index.html">HOME</a>
-        <a href="rankings.html">RANKINGS</a>
-        <a href="join.html">JOIN</a>
-        <a href="contact.html">CONTACT</a>
-        <a href="wars.html">WAR RECORDS</a>
-    </div>
-</nav>
+        <div class="brand"><span>{ 龙 }</span> FRX FRACTURE</div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">HOME</a>
+            <a href="rankings.html">RANKINGS</a>
+            <a href="join.html">JOIN</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="wars.html">WAR RECORDS</a>
+        </div>
+    </nav>
 
-    <header class="hero">
+    <header class="hero" style="padding-top: 80px;">
         <h1>FRACTURE THE <span style="color: var(--main-blue);">MATRIX</span></h1>
         <p>Nigeria's elite BloodStrike organization. We specialize in tactical dominance and individual skill. The evolution of the { 龙 } legacy starts here.</p>
-        <a href="join.html" class="btn btn-blue">INITIATE JOINING</a>
+        <div style="margin-top: 20px;">
+            <a href="join.html" class="btn btn-blue">INITIATE JOINING</a>
+            <a href="rankings.html" class="btn" style="border: 1px solid var(--border); margin-left: 10px;">VIEW LEADERS</a>
+        </div>
     </header>
 
-    <section style="padding: 100px 10%;">
+    <section id="about" style="padding: 100px 10%;">
         <h2 class="section-title">ABOUT US</h2>
-        <p style="font-size: 1.2rem; color: #ccc; max-width: 800px;">
+        <p style="font-size: 1.2rem; color: #ccc; max-width: 800px; line-height: 1.8;">
             FRX Fracture is more than a clan—it is a professional environment for the best players in the region. 
-            We operate on a weekend-only schedule to ensure maximum intensity and competitive focus. 
+            We operate on a <span style="color: var(--main-blue); font-weight: bold;">weekend-only schedule</span> to ensure maximum intensity and competitive focus. 
             With branches across multiple sub-clans, we are building a dynasty in the server.
         </p>
     </section>
-<script>
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-</script>
+    <footer style="padding: 40px 10%; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: #444;">
+        <p>&copy; 2026 FRX FRACTURE | DESIGNED FOR THE ELITE</p>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked (good for mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
