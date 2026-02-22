@@ -35,20 +35,19 @@
         </div>
         <div class="nav-links">
             <a href="index.html" class="active">HOME</a>
-            <a href="leaderboard.html">LEADERBOARD</a>
-            <a href="join.html">JOIN US</a>
+            <a href="rankings.html">LEADERBOARD</a> <a href="join.html">JOIN US</a>
             <a href="contact.html">CONTACT</a>
             <a href="wars.html">WAR RECORDS</a>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-content">
+        <div class="hero-content" style="text-align: center; width: 100%;">
             <h1>FRACTURE THE <span style="color: var(--main-blue);">MATRIX</span></h1>
             <p>Nigeria's elite BloodStrike organization. We specialize in tactical dominance and individual skill. The evolution of the 龙 legacy starts here.</p>
-            <div class="hero-btns" style="margin-top: 30px;">
-                <a href="join.html" class="btn-main">JOIN CLAN</a>
-                <a href="leaderboard.html" class="btn-outline">VIEW LEADERS & MEMBERS/a>
+            <div class="hero-btns" style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+                <a href="join.html" class="btn btn-blue">JOIN CLAN</a>
+                <a href="rankings.html" class="btn" style="border: 1px solid var(--border);">VIEW LEADERS</a>
             </div>
         </div>
     </header>
@@ -65,18 +64,22 @@
                     With branches across multiple sub-clans, we are building a dynasty in the server.
                 </p>
             </div>
-            <div class="about-stats" style="background: var(--glass); padding: 30px; border-radius: 15px; border: 1px solid var(--border);">
-                <div style="margin-bottom: 15px;">
-                    <span style="display: block; font-family: 'Orbitron'; color: var(--main-blue); font-size: 2rem;">100%</span>
-                    <span style="color: #666; text-transform: uppercase; font-size: 0.8rem;">Tactical Focus</span>
+            <div class="about-stats" style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid var(--border);">
+                <div style="margin-bottom: 25px;">
+                    <span style="display: block; font-family: 'Orbitron'; color: var(--main-blue); font-size: 2.5rem;">100%</span>
+                    <span style="color: #666; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Tactical Focus</span>
                 </div>
                 <div>
-                    <span style="display: block; font-family: 'Orbitron'; color: gold; font-size: 2rem;">WEEKEND</span>
-                    <span style="color: #666; text-transform: uppercase; font-size: 0.8rem;">Training Only</span>
+                    <span style="display: block; font-family: 'Orbitron'; color: gold; font-size: 2.5rem;">WEEKEND</span>
+                    <span style="color: #666; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Training Only</span>
                 </div>
             </div>
         </div>
     </section>
+
+    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <footer>
         <div class="social-links">
@@ -96,10 +99,6 @@
         <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
     </footer>
 
-    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <script>
         // Navigation Logic
         const hamburger = document.querySelector('.hamburger');
@@ -109,7 +108,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
