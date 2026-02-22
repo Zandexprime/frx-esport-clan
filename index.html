@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRX FRACTURE CLAN | ELITE BLOODSTRIKE</title>
+    <title>FRX FRACTURE | NIGERIA'S ELITE BLOODSTRIKE CLAN</title>
+    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/site.webmanifest">
-    <meta name="theme-color" content="#00f2ff">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#3b82f6">
 </head>
 <body>
 
@@ -35,26 +35,27 @@
         </div>
         <div class="nav-links">
             <a href="index.html" class="active">HOME</a>
-            <a href="leaderboard.html">LEADERBOARD</a> <a href="join.html">JOIN US</a>
+            <a href="leaderboard.html">LEADERBOARD</a> 
+            <a href="join.html">JOIN US</a>
             <a href="contact.html">CONTACT</a>
             <a href="wars.html">WAR RECORDS</a>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-content" style="text-align: center; width: 100%;">
+        <div class="hero-content">
             <h1>FRACTURE THE <span style="color: var(--main-blue);">MATRIX</span></h1>
             <p>Nigeria's elite BloodStrike organization. We specialize in tactical dominance and individual skill. The evolution of the 龙 legacy starts here.</p>
-            <div class="hero-btns" style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
-                <a href="join.html" class="btn btn-blue">JOIN CLAN</a>
-                <a href="rankings.html" class="btn" style="border: 1px solid var(--border);">VIEW LEADERS</a>
+            <div class="hero-btns" style="margin-top: 30px;">
+                <a href="join.html" class="btn-main">JOIN CLAN</a>
+                <a href="leaderboard.html" class="btn-outline">VIEW LEADERS</a>
             </div>
         </div>
     </header>
 
-    <section id="about" style="padding: 100px 10%; background: linear-gradient(to bottom, #050505, #0a0a0a);">
+    <section id="about" style="padding: 100px 5%; background: linear-gradient(to bottom, #050505, #0a0a0a);">
         <h2 class="section-title">ABOUT US</h2>
-        <div class="about-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center;">
+        <div class="about-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; margin-top: 40px;">
             <div class="about-text">
                 <p style="font-size: 1.2rem; color: #ccc; line-height: 1.8; margin-bottom: 20px;">
                     FRX Fracture is more than a clan—it is a professional environment for the best players in the region. 
@@ -64,7 +65,7 @@
                     With branches across multiple sub-clans, we are building a dynasty in the server.
                 </p>
             </div>
-            <div class="about-stats" style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid var(--border);">
+            <div class="about-stats" style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid var(--border); text-align: center;">
                 <div style="margin-bottom: 25px;">
                     <span style="display: block; font-family: 'Orbitron'; color: var(--main-blue); font-size: 2.5rem;">100%</span>
                     <span style="color: #666; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Tactical Focus</span>
@@ -76,10 +77,6 @@
             </div>
         </div>
     </section>
-
-    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <footer>
         <div class="social-links">
@@ -99,6 +96,10 @@
         <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
     </footer>
 
+    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
         // Navigation Logic
         const hamburger = document.querySelector('.hamburger');
@@ -108,6 +109,7 @@
             navLinks.classList.toggle('active');
         });
 
+        // Close menu when link is clicked
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
