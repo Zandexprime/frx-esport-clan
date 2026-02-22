@@ -247,6 +247,98 @@ nav {
 .list-points { display: block; font-family: 'Orbitron'; font-size: 0.8rem; color: #fff; }
 .list-tier { display: block; font-size: 9px; color: #666; text-transform: uppercase; }
 
+
+    // 1. Optimized Search (Handles Symbols & Spaces better)
+    function filterPlayers() {
+        const input = document.getElementById('playerSearch').value.toLowerCase().trim();
+        const players = document.querySelectorAll('.player-item');
+        
+        players.forEach(player => {
+            const name = player.querySelector('.list-name').innerText.toLowerCase();
+            // This checks if the search text exists anywhere in the name
+            if (name.includes(input)) {
+                player.style.display = "grid";
+            } else {
+                player.style.display = "none";
+            }
+        });
+    }
+
+    // 2. Clan Toggle Logic
+    function showClan(num) {
+        const c1 = document.getElementById('clan1-list');
+        const c2 = document.getElementById('clan2-list');
+        const btns = document.querySelectorAll('.toggle-btn');
+        
+        if (num === 1) {
+            c1.style.display = 'flex';
+            c2.style.display = 'none';
+            btns[0].classList.add('active');
+            btns[1].classList.remove('active');
+        } else {
+            c1.style.display = 'none';
+            c2.style.display = 'flex';
+            btns[0].classList.remove('active');
+            btns[1].classList.add('active');
+        }
+    }
+
+    // 3. Profile Logic (Enhanced for reliability)
+    function openProfile(name, points, tier, img) {
+        const modal = document.getElementById("playerModal");
+        const modalContainer = document.getElementById("modalContainer");
+        const modalData = document.getElementById("modalData");
+
+        // Apply background with a fallback check
+        modalContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.2)), url('${img}')`;
+        
+        modalData.innerHTML = `
+            <div class="landscape-profile-content">
+                <div class="profile-main-info">
+                    <img src="${img}" class="profile-avatar-square" onerror="this.src='images/default.jpg'">
+                    <div class="profile-text">
+                        <h2 style="font-family: 'Orbitron'; color: #fff; margin: 0;">${name}</h2>
+                        <p style="color: #00f2ff; font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">FRX OFFICIAL MEMBER</p>
+                    </div>
+                </div>
+                <div class="profile-stats-landscape">
+                    <div class="stat-box">
+                        <p>POINTS</p>
+                        <span>${points}</span>
+                    </div>
+                    <div class="stat-box">
+                        <p>RANK</p>
+                        <span>${tier}</span>
+                    </div>
+                </div>
+                <button class="btn-main-small" onclick="closeModal()">BACK TO LIST</button>
+            </div>
+        `;
+        modal.style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("playerModal").style.display = "none";
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById("playerModal");
+        if (event.target == modal) closeModal();
+    }
+
+    // Mobile Nav
+    document.querySelector('.hamburger').addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    // Loader
+    window.addEventListener("load", () => {
+        setTimeout(() => {
+            document.getElementById("loader").classList.add("loader-hidden");
+        }, 1000); 
+    });
+
 /* --- CLAN TOGGLE --- */
 .clan-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
 .toggle-btn {
