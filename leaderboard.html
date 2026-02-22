@@ -14,6 +14,16 @@
     <meta name="theme-color" content="#00f2ff">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Optimization: Ensure modal background renders efficiently */
+        #modalContainer {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #000; /* Fallback while image loads */
+        }
+    </style>
 </head>
 <body>
 
@@ -69,7 +79,7 @@
             
             <div class="list-row player-item clickable" onclick="openProfile('GlORY', '13,155', 'LEGEND II', 'images/glory.jpg')">
                 <div class="list-rank">#02</div>
-                <img src="images/glory.jpg" class="list-img" onerror="this.src='images/default.jpg'">
+                <img src="images/glory.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">龙 GlORY</div>
                 <div class="list-stats">
                     <span class="list-points">13,155</span>
@@ -79,7 +89,7 @@
 
             <div class="list-row player-item clickable" onclick="openProfile('Death Note', '12,900', 'LEGEND II', 'images/deathnote.jpg')">
                 <div class="list-rank">#03</div>
-                <img src="images/deathnote.jpg" class="list-img" onerror="this.src='images/default.jpg'">
+                <img src="images/deathnote.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">龙 Death Note</div>
                 <div class="list-stats">
                     <span class="list-points">12,900</span>
@@ -89,7 +99,7 @@
 
             <div class="list-row player-item clickable" onclick="openProfile('Nono', '11,450', 'LEGEND I', 'images/Members/2.jpg')">
                 <div class="list-rank">#04</div>
-                <img src="images/Members/2.jpg" class="list-img" onerror="this.src='images/default.jpg'">
+                <img src="images/Members/2.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">龙 Nono</div>
                 <div class="list-stats">
                     <span class="list-points">11,450</span>
@@ -99,7 +109,7 @@
 
             <div class="list-row player-item clickable" onclick="openProfile('Zelda', '10,800', 'GRANDMASTER V', 'images/Members/3.jpg')">
                 <div class="list-rank">#05</div>
-                <img src="images/Members/3.jpg" class="list-img" onerror="this.src='images/default.jpg'">
+                <img src="images/Members/3.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">龙 Zelda</div>
                 <div class="list-stats">
                     <span class="list-points">10,800</span>
@@ -109,7 +119,7 @@
 
             <div class="list-row player-item clickable" onclick="openProfile('Israel', 'PENDING', 'UNVERIFIED', 'images/Israel.jpg')">
                 <div class="list-rank">#06</div>
-                <img src="images/Israel.jpg" class="list-img" onerror="this.src='images/default.jpg'">
+                <img src="images/Israel.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">Israel <span style="color:#ff4444; font-size:8px;">[UNVERIFIED]</span></div>
                 <div class="list-stats">
                     <span class="list-points">----</span>
@@ -119,7 +129,7 @@
 
             <div class="list-row player-item clickable" onclick="openProfile('M|阿克雷尔', '9,500', 'GRANDMASTER II', 'images/Members/4.jpg')">
                 <div class="list-rank">#07</div>
-                <img src="images/Members/4.jpg" class="list-img" onerror="this.src='images/default.jpg'">
+                <img src="images/Members/4.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">M|阿克雷尔</div>
                 <div class="list-stats">
                     <span class="list-points">9,500</span>
@@ -129,7 +139,7 @@
 
             <div class="list-row player-item clickable" onclick="openProfile('nemÉs1x', '8,900', 'DIAMOND I', 'images/Members/8.jpg')">
                 <div class="list-rank">#08</div>
-                <img src="images/Members/8.jpg" class="list-img" onerror="this.src='images/default.jpg'">
+                <img src="images/Members/8.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">nemÉs1x</div>
                 <div class="list-stats">
                     <span class="list-points">8,900</span>
@@ -142,7 +152,7 @@
         <div id="clan2-list" class="rank-grid" style="display: none;">
             <div class="list-row player-item clickable" onclick="openProfile('EMI NOON', '7,958', 'DIAMOND I', 'images/israel.jpg')">
                 <div class="list-rank">#01</div>
-                <img src="images/israel.jpg" class="list-img" onerror="this.src='images/default.jpg'">
+                <img src="images/israel.jpg" class="list-img" loading="lazy" onerror="this.src='images/default.jpg'">
                 <div class="list-name">EmiNoon</div>
                 <div class="list-stats">
                     <span class="list-points">7,958</span>
@@ -173,15 +183,17 @@
     </a>
 
     <script>
+        // 1. Optimized Search Logic
         function filterPlayers() {
-            let input = document.getElementById('playerSearch').value.toUpperCase();
-            let players = document.getElementsByClassName('player-item');
-            for (let i = 0; i < players.length; i++) {
-                let name = players[i].getElementsByClassName('list-name')[0];
-                players[i].style.display = name.innerText.toUpperCase().includes(input) ? "grid" : "none";
-            }
+            const input = document.getElementById('playerSearch').value.toLowerCase().trim();
+            const players = document.querySelectorAll('.player-item');
+            players.forEach(player => {
+                const name = player.querySelector('.list-name').innerText.toLowerCase();
+                player.style.display = name.includes(input) ? "grid" : "none";
+            });
         }
 
+        // 2. Clan Toggle Logic
         function showClan(num) {
             const c1 = document.getElementById('clan1-list');
             const c2 = document.getElementById('clan2-list');
@@ -192,12 +204,12 @@
             btns[1].classList.toggle('active', num === 2);
         }
 
+        // 3. Optimized Profile Logic
         function openProfile(name, points, tier, img) {
             const modal = document.getElementById("playerModal");
             const modalContainer = document.getElementById("modalContainer");
             const modalData = document.getElementById("modalData");
 
-            // Ensures the background image uses the correct synced path
             modalContainer.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.2)), url('${img}')`;
             
             modalData.innerHTML = `
@@ -206,7 +218,7 @@
                         <img src="${img}" class="profile-avatar-square" onerror="this.src='images/default.jpg'">
                         <div class="profile-text">
                             <h2 style="font-family: 'Orbitron'; color: #fff; margin: 0;">${name}</h2>
-                            <p style="color: var(--main-blue); font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">ACTIVE MEMBER</p>
+                            <p style="color: #00f2ff; font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px;">ACTIVE MEMBER</p>
                         </div>
                     </div>
                     <div class="profile-stats-landscape">
@@ -240,7 +252,7 @@
         window.addEventListener("load", () => {
             setTimeout(() => {
                 document.getElementById("loader").classList.add("loader-hidden");
-            }, 1000); 
+            }, 800); 
         });
     </script>
 </body>
