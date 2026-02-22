@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRX FRACTURE | HOME</title>
+    <title>FRX FRACTURE CLAN</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="shortcut icon" href="images/favicon.ico">
-
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-
-<link rel="manifest" href="images/site.webmanifest">
-
-<meta name="theme-color" content="#00f2ff">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <meta name="theme-color" content="#00f2ff">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
     <div id="loader">
-    <div class="loader-content">
-        <div class="dragon-symbol">龙</div>
-        <div class="loader-bar"></div>
-        <p>INITIALIZING FRX SYSTEM...</p>
+        <div class="loader-content">
+            <div class="dragon-symbol">龙</div>
+            <div class="loader-bar"></div>
+            <p>INITIALIZING FRX SYSTEM...</p>
+        </div>
     </div>
-</div>
+
     <nav>
-        <div class="brand"><span>{ 龙 }</span> FRX FRACTURE</div>
+        <div class="brand"><span>{龙}</span> FRX FRACTURE</div>
         <div class="hamburger">
             <span></span>
             <span></span>
@@ -34,7 +36,6 @@
         <div class="nav-links">
             <a href="index.html" class="active">HOME</a>
             <a href="rankings.html">RANKINGS</a>
-            <a href="rankings 2.html">RANKINGS2</a>
             <a href="join.html">JOIN</a>
             <a href="contact.html">CONTACT</a>
             <a href="wars.html">WAR RECORDS</a>
@@ -59,11 +60,30 @@
         </p>
     </section>
 
-    <footer style="padding: 40px 10%; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: #444;">
-        <p>&copy; 2026 FRX FRACTURE | DESIGNED FOR THE ELITE</p>
+    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://discord.gg/nYF2F32E8T" class="social-icon" target="_blank">
+                <i class="fab fa-discord"></i>
+                <span>Discord</span>
+            </a>
+            <a href="https://www.tiktok.com/@fracture_esports" class="social-icon" target="_blank">
+                <i class="fab fa-tiktok"></i>
+                <span>TikTok</span>
+            </a>
+            <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="social-icon" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+        <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
     </footer>
 
     <script>
+        // Navigation Logic
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
@@ -71,44 +91,19 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when a link is clicked (good for mobile)
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
+        
+        // Pre-loader Logic
+        window.addEventListener("load", function() {
+            const loader = document.getElementById("loader");
+            setTimeout(() => {
+                loader.classList.add("loader-hidden");
+            }, 1500); 
+        });
     </script>
-    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-<footer>
-    <div class="social-links">
-        <a href="https://discord.gg/nYF2F32E8T" class="social-icon" target="_blank">
-            <i class="fab fa-discord"></i>
-            <span>Discord</span>
-        </a>
-        <a href="https://www.tiktok.com/@fracture_esports" class="social-icon" target="_blank">
-            <i class="fab fa-tiktok"></i>
-            <span>TikTok</span>
-        </a>
-        <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="social-icon" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-            <span>WhatsApp</span>
-        </a>
-    </div>
-    <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
-</footer>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script>
-    window.addEventListener("load", function() {
-        const loader = document.getElementById("loader");
-        // Adds a slight delay so users actually see your cool logo
-        setTimeout(() => {
-            loader.classList.add("loader-hidden");
-        }, 1500); 
-    });
-</script>
 </body>
 </html>
