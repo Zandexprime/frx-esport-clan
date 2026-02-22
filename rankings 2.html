@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRX | MASTER RANKINGS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+
+<link rel="manifest" href="images/site.webmanifest">
+
+<meta name="theme-color" content="#00f2ff">
+</head>
+<body>
+    <nav>
+        <div class="brand">{ 龙 } FRX FRACTURE</div>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="rankings.html" class="active">RANKINGS</a>
+            <a href="join.html">JOIN</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="wars.html">WAR RECORDS</a>
+        </div>
+    </nav>
+
+    <section style="padding: 110px 5% 50px;">
+        <h2 class="section-title">COMMAND HIERARCHY</h2>
+
+        <div class="leader-section">
+            <div class="leader-card">
+                <img src="images/zandex.jpg" class="leader-img-circle">
+                <h3 class="player-name">龙 ZanDex</h3>
+                <p style="color: gold; font-size: 10px; font-family: 'Orbitron';">CLAN LEADER</p>
+            </div>
+            <div class="leader-card" style="border-color: silver;">
+                <img src="images/zandex.jpg" class="leader-img-circle" style="border-color: silver;">
+                <h3 class="player-name">龙 ----</h3>
+                <p style="color: silver; font-size: 10px; font-family: 'Orbitron';">VICE LEADER</p>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="playerSearch" class="rank-search" placeholder="SEARCH MEMBERS NAME..." onkeyup="filterPlayers()">
+        </div>
+
+        <div class="clan-toggle">
+            <button class="toggle-btn active" onclick="showClan(1)">CLAN 1</button>
+            <button class="toggle-btn" onclick="showClan(2)">CLAN 2</button>
+        </div>
+
+        <div id="clan1-list" class="rank-grid">
+            <div class="list-row player-item">
+                <div class="list-rank">#01</div>
+                <img src="images/glory.jpg" class="list-img">
+                <div class="list-name">龙 GEORY</div>
+                <div class="list-stats">
+                    <span class="list-points">13,155</span>
+                    <span class="list-tier">LEGEND II</span>
+                </div>
+            </div>
+            <div class="list-row player-item">
+                <div class="list-rank">#01</div>
+                <img src="images/glory.jpg" class="list-img">
+                <div class="list-name">龙 GEORY</div>
+                <div class="list-stats">
+                    <span class="list-points">13,155</span>
+                    <span class="list-tier">LEGEND II</span>
+                </div>
+            </div>
+            <div class="list-row player-item">
+                <div class="list-rank">#01</div>
+                <img src="images/glory.jpg" class="list-img">
+                <div class="list-name">龙 GEORY</div>
+                <div class="list-stats">
+                    <span class="list-points">13,155</span>
+                    <span class="list-tier">LEGEND II</span>
+                </div>
+            </div>
+            <div class="list-row player-item">
+                <div class="list-rank">#01</div>
+                <img src="images/glory.jpg" class="list-img">
+                <div class="list-name">龙 GEORY</div>
+                <div class="list-stats">
+                    <span class="list-points">13,155</span>
+                    <span class="list-tier">LEGEND II</span>
+                </div>
+            </div>
+            <div class="list-row player-item">
+                <div class="list-rank">#02</div>
+                <img src="images/glory.jpg" class="list-img">
+                <div class="list-name">龙 GLORY</div>
+                <div class="list-stats">
+                    <span class="list-points">12,400</span>
+                    <span class="list-tier">LEGEND III</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="clan2-list" class="rank-grid">
+            <div class="list-row player-item" style="border-left: 2px solid #00f2ff;">
+                <div class="list-rank">#01</div>
+                <img src="images/israel.jpg" class="list-img">
+                <div class="list-name">EmiNoon</div>
+                <div class="list-stats">
+                    <span class="list-points">7,958</span>
+                    <span class="list-tier">DIAMOND I</span>
+                </div>
+            </div>
+            <div class="list-row player-item" style="border-left: 2px solid #00f2ff;">
+                <div class="list-rank">#01</div>
+                <img src="images/israel.jpg" class="list-img">
+                <div class="list-name">EmiNoon</div>
+                <div class="list-stats">
+                    <span class="list-points">7,958</span>
+                    <span class="list-tier">DIAMOND I</span>
+                </div>
+            </div>
+            <div class="list-row player-item" style="border-left: 2px solid #00f2ff;">
+                <div class="list-rank">#01</div>
+                <img src="images/israel.jpg" class="list-img">
+                <div class="list-name">EmiNoon</div>
+                <div class="list-stats">
+                    <span class="list-points">7,958</span>
+                    <span class="list-tier">DIAMOND I</span>
+                </div>
+            </div>
+            <div class="list-row player-item" style="border-left: 2px solid #00f2ff;">
+                <div class="list-rank">#01</div>
+                <img src="images/israel.jpg" class="list-img">
+                <div class="list-name">EmiNoon</div>
+                <div class="list-stats">
+                    <span class="list-points">7,958</span>
+                    <span class="list-tier">DIAMOND I</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Search Logic
+        function filterPlayers() {
+            let input = document.getElementById('playerSearch').value.toUpperCase();
+            let players = document.getElementsByClassName('player-item');
+
+            for (let i = 0; i < players.length; i++) {
+                let name = players[i].getElementsByClassName('list-name')[0];
+                if (name.innerText.toUpperCase().indexOf(input) > -1) {
+                    players[i].style.display = "grid";
+                } else {
+                    players[i].style.display = "none";
+                }
+            }
+        }
+
+        // Toggle Logic
+        function showClan(num) {
+            const c1 = document.getElementById('clan1-list');
+            const c2 = document.getElementById('clan2-list');
+            const btns = document.querySelectorAll('.toggle-btn');
+            if (num === 1) {
+                c1.style.display = 'flex';
+                c2.style.display = 'none';
+                btns[0].classList.add('active');
+                btns[1].classList.remove('active');
+            } else {
+                c1.style.display = 'none';
+                c2.style.display = 'flex';
+                btns[1].classList.add('active');
+                btns[0].classList.remove('active');
+            }
+        }
+
+        // Hamburger
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+<a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer>
+    <div class="social-links">
+        <a href="https://discord.gg/nYF2F32E8T" class="social-icon" target="_blank">
+            <i class="fab fa-discord"></i>
+            <span>Discord</span>
+        </a>
+        <a href="https://www.tiktok.com/@fracture_esports" class="social-icon" target="_blank">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+        </a>
+        <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="social-icon" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+    </div>
+    <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
+</footer>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</body>
+</html>
