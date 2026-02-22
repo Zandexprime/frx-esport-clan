@@ -2,91 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRX | CONTACT</title>
     <link rel="stylesheet" href="style.css">
+    
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="shortcut icon" href="images/favicon.ico">
-
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-
-<link rel="manifest" href="images/site.webmanifest">
-
-<meta name="theme-color" content="#00f2ff">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#00f2ff">
 </head>
 <body>
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="dragon-symbol">龙</div>
+            <div class="loader-bar"></div>
+            <p>CONNECTING TO FRX...</p>
+        </div>
+    </div>
     
     <nav>
-    <div class="brand">{龙} FRX FRACTURE</div>
-    <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="nav-links">
-        <a href="index.html">HOME</a>
-        <a href="rankings.html">RANKINGS</a>
-         <a href="leaderboard.html">LEADERBOARD</a>
-        <a href="join.html">JOIN</a>
-        <a href="contact.html"class="active">CONTACT</a>
-        <a href="wars.html">WAR RECORDS</a>
-    </div>
-</nav>
+        <div class="brand"><span>龙</span> FRX FRACTURE</div>
+        <div class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="leaderboard.html">LEADERBOARD</a>
+            <a href="join.html">JOIN US</a>
+            <a href="contact.html" class="active">CONTACT</a>
+            <a href="wars.html">WAR RECORDS</a>
+        </div>
+    </nav>
 
-    <section style="padding: 100px 10%;">
-        <h2 class="section-title">THE COMMAND NETWORK</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+    <section style="padding: 120px 10% 50px;">
+        <h2 class="section-title">THE NETWORK</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
             
-            <div style="background: var(--card-bg); padding: 40px; border-radius: 8px;">
-                <h3 style="color: var(--main-blue);">DISCORD</h3>
-                <p style="margin: 15px 0; color: #777;">Main Communication Hub</p>
-                <a href="https://discord.gg/nYF2F32E8T" class="btn btn-blue" style="width: 100%; text-align: center;">JOIN SERVER</a>
+            <div class="contact-card discord-border">
+                <i class="fab fa-discord contact-icon" style="color: #5865F2;"></i>
+                <h3>DISCORD</h3>
+                <p>Main Communication Hub & Community Events.</p>
+                <a href="https://discord.gg/nYF2F32E8T" class="contact-btn discord-bg">JOIN SERVER</a>
             </div>
 
-            <div style="background: var(--card-bg); padding: 40px; border-radius: 8px;">
-                <h3 style="color: #25d366;">WHATSAPP</h3>
-                <p style="margin: 15px 0; color: #777;">Recruitment & Tryouts</p>
-                <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo?mode=gi_t" class="btn btn-blue" style="background: #25d366; width: 100%; text-align: center;">OPEN CHAT</a>
+            <div class="contact-card whatsapp-border">
+                <i class="fab fa-whatsapp contact-icon" style="color: #25d366;"></i>
+                <h3>WHATSAPP</h3>
+                <p>Fast Recruitment, Tryouts & Clan Updates.</p>
+                <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="contact-btn whatsapp-bg">OPEN CHAT</a>
             </div>
 
-            <div style="background: var(--card-bg); padding: 40px; border-radius: 8px;">
-                <h3 style="color: #ff0050;">TIKTOK</h3>
-                <p style="margin: 15px 0; color: #777;">Elite Clips & Highlights</p>
-                <a href="https://www.tiktok.com/@fracture_esports?_r=1&_t=ZS-947NzMU0Sur" class="btn btn-blue" style="background: #ff0050; width: 100%; text-align: center;">FOLLOW FRX</a>
+            <div class="contact-card tiktok-border">
+                <i class="fab fa-tiktok contact-icon" style="color: #ff0050;"></i>
+                <h3>TIKTOK</h3>
+                <p>Elite Gameplay Clips & Fracture Highlights.</p>
+                <a href="https://www.tiktok.com/@fracture_esports" class="contact-btn tiktok-bg">FOLLOW FRX</a>
             </div>
 
         </div>
     </section>
-<script>
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-</script>
-<a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
+    <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-<footer>
-    <div class="social-links">
-        <a href="https://discord.gg/nYF2F32E8T" class="social-icon" target="_blank">
-            <i class="fab fa-discord"></i>
-            <span>Discord</span>
-        </a>
-        <a href="https://www.tiktok.com/@fracture_esports" class="social-icon" target="_blank">
-            <i class="fab fa-tiktok"></i>
-            <span>TikTok</span>
-        </a>
-        <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo" class="social-icon" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-            <span>WhatsApp</span>
-        </a>
-    </div>
-    <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
-</footer>
+    <footer>
+        <p class="copyright">© 2026 FRX FRACTURE | ELITE GAMING DIVISION</p>
+    </footer>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Loader logic
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                document.getElementById("loader").classList.add("loader-hidden");
+            }, 800); 
+        });
+    </script>
 </body>
 </html>
