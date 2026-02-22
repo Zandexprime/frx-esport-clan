@@ -82,3 +82,101 @@ th, td { padding: 20px; text-align: left; border-bottom: 1px solid var(--border)
 th { text-transform: uppercase; font-size: 11px; color: var(--main-blue); letter-spacing: 2px; }
 
 .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--main-blue); padding-left: 20px; }
+
+
+
+/* FRX MASTER STYLES - RESPONSIVE VERSION */
+:root {
+    --main-blue: #3b82f6;
+    --dark-bg: #050505;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--dark-bg);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .brand { font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
+
+/* NAVIGATION - RESPONSIVE */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-links { display: flex; list-style: none; }
+.nav-links a { 
+    color: #fff; 
+    text-decoration: none; 
+    margin-left: 20px; 
+    font-size: 13px; 
+    font-weight: bold; 
+    transition: 0.3s; 
+}
+
+/* Hamburger Menu Icon (Hidden on Desktop) */
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span { width: 25px; height: 3px; background: white; border-radius: 5px; }
+
+/* HERO SECTION - RESPONSIVE */
+.hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+    background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+}
+
+.hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
+.hero p { font-size: 1rem; color: #888; max-width: 600px; }
+
+/* RESPONSIVE GRID FOR CONTACT/CARDS */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* MOBILE ADJUSTMENTS (Screens smaller than 768px) */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hidden by default on mobile */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0,0,0,0.95);
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .nav-links.active { display: flex; } /* Shown when clicked */
+    .nav-links a { margin: 15px 0; font-size: 18px; }
+    .hamburger { display: flex; }
+    
+    .hero h1 { font-size: 2.5rem; }
+    table { font-size: 12px; } /* Shrink table text for small screens */
+    th, td { padding: 10px 5px; }
+}
