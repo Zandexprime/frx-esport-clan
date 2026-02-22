@@ -363,6 +363,44 @@ nav {
     }
 }
 
+.b-tag {
+    display: inline-block;
+    background: rgba(255, 0, 80, 0.1);
+    color: #ff0050;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 5px;
+    border: 1px solid rgba(255, 0, 80, 0.2);
+}
+
+.inactivity-bar {
+    background: rgba(255, 0, 80, 0.05);
+    border: 1px solid rgba(255, 0, 80, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    color: #ff0050;
+    font-size: 11px;
+    font-family: 'Orbitron';
+}
+
+.leadership-promo {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid var(--main-blue);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .bottom-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
 /* --- ROUNDED BUTTONS --- */
 .toggle-btn.rounded {
     border-radius: 50px; /* Makes it pill-shaped */
