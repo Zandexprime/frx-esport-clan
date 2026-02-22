@@ -7,14 +7,21 @@
 </head>
 <body>
     <nav>
-        <div class="brand"><span>{ 龙 }</span> FRX FRACTURE</div>
-        <div>
-            <a href="index.html">HOME</a>
-            <a href="rankings.html">RANKINGS</a>
-            <a href="join.html" class="active">JOIN</a>
-            <a href="contact.html">CONTACT</a>
-        </div>
-    </nav>
+    <div class="brand">{ 龙 } FRX FRACTURE</div>
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="rankings.html">RANKINGS</a>
+        <a href="join.html">JOIN</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="wars.html">WAR RECORDS</a>
+    </div>
+</nav>
+
 
     <section style="padding: 100px 10%; text-align: center;">
         <h2 style="font-size: 3rem; margin-bottom: 20px;">BECOME A LEADER</h2>
@@ -28,5 +35,13 @@
             <a href="https://chat.whatsapp.com/DBjDvU5sd6rA4anDeY8neo?mode=gi_t" class="btn btn-blue">JOIN TRYOUT GROUP</a>
         </div>
     </section>
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
 </body>
 </html>
