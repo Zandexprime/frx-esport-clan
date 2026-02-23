@@ -970,6 +970,7 @@ footer {
 }
 
 
+
 /* --- RESPONSIVE QUERIES --- */
 @media screen and (max-width: 768px) {
     .nav-links {
@@ -992,4 +993,127 @@ footer {
     .floating-whatsapp { width: 50px; height: 50px; font-size: 25px; bottom: 15px; right: 15px; }
     .hero h1 { font-size: 2rem; }
     .list-row { grid-template-columns: 30px 40px 1fr 80px; padding: 10px 5px; }
+}
+/* --- RESPONSIVE SYSTEM BOOT --- */
+
+/* For Tablets and Phones (Screens smaller than 992px) */
+@media (max-width: 992px) {
+    #about .system-grid {
+        grid-template-columns: 1fr; /* Stack leadership and schedule */
+    }
+}
+
+/* For Phones (Screens smaller than 768px) */
+@media (max-width: 768px) {
+    /* Adjust Main Title */
+    h1 {
+        font-size: 1.8rem !important;
+        letter-spacing: 3px !important;
+    }
+
+    blockquote {
+        font-size: 0.9rem !important;
+    }
+
+    /* Fix the Intel Grid */
+    .game-grid {
+        grid-template-columns: 1fr; /* Single column for clips */
+        gap: 15px;
+    }
+
+    .gallery-card {
+        height: 200px; /* Slimmer height for mobile screens */
+    }
+
+    /* Fix the Core Values Boxes */
+    .values-flex {
+        grid-template-columns: 1fr 1fr; /* 2x2 grid instead of 4 in a row */
+        gap: 10px;
+    }
+
+    /* Move the Discord Toggle higher so it doesn't block buttons */
+    .chat-trigger {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .comms-panel {
+        width: 90%; /* Take up most of the screen on mobile */
+        right: -100%; 
+        bottom: 80px;
+    }
+    
+    .comms-panel.active {
+        right: 5%;
+    }
+}
+
+/* --- MASTER RESPONSIVE PROTOCOL --- */
+@media (max-width: 1024px) {
+    .system-grid { grid-template-columns: 1fr !important; } /* Stacks High Table & Schedule */
+    .protocol-card { grid-column: span 1 !important; }
+}
+
+@media (max-width: 768px) {
+    /* Navigation Fix */
+    nav { padding: 15px 5%; height: auto; flex-wrap: wrap; }
+    .nav-links { 
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background: rgba(10, 12, 16, 0.98); flex-direction: column; justify-content: center; 
+        align-items: center; gap: 30px; z-index: 1000;
+    }
+    .nav-links.active { display: flex; }
+    .nav-links a { font-size: 1.5rem; margin: 0; }
+
+    /* Hero Text Scaling */
+    .hero h1 { font-size: 2.8rem !important; }
+    .hero p { font-size: 0.9rem; padding: 0 10px; }
+    .btn-group { flex-direction: column; width: 100%; align-items: center; }
+    .btn { width: 90%; text-align: center; }
+
+    /* Grids & Cards */
+    .news-grid, .stat-grid, .game-grid { 
+        grid-template-columns: 1fr !important; 
+        padding: 0 10px;
+    }
+    
+    /* Core Values Fix: 2x2 grid on mobile instead of stacking long icons */
+    .values-flex { 
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; 
+        gap: 10px; 
+    }
+    
+    /* Table Fix: Adds horizontal scroll so it doesn't break the screen */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -5%; /* Pulls table to edges for better view */
+    }
+    table { min-width: 600px; } /* Ensures table content stays readable */
+
+    /* Modal Fix */
+    .modal-box { width: 95%; padding: 25px; }
+    
+    /* Gallery Fix */
+    .gallery-card { height: 220px; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 2.2rem !important; }
+    .values-flex { grid-template-columns: 1fr !important; } /* Stacks values on very small phones */
+    .stat-card h3 { font-size: 1.8rem; }
+}
+
+/* For Very Small Phones (smaller than 480px) */
+@media (max-width: 480px) {
+    .values-flex {
+        grid-template-columns: 1fr; /* Stack everything */
+    }
+    
+    .about-header {
+        margin-bottom: 40px;
+    }
 }
