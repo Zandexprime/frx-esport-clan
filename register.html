@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRX // SCRIM ENROLLMENT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Outfit:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tournament-style.css">
+</head>
+<body class="reg-body">
+    <div class="background-vfx"></div>
+    <div class="reg-card glass">
+        <h2 class="neon-flow">SCRIM_ENROLLMENT</h2>
+        <form id="regForm">
+            <div class="input-group">
+                <label>ENTRY TYPE</label>
+                <select id="regType">
+                    <option value="SQUAD">SQUAD FIGHT (4 MAN)</option>
+                    <option value="SOLO">SOLO OPERATIVE</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label id="nameLabel">SQUAD NAME</label>
+                <input type="text" id="regName" placeholder="ENTER SCRIM TAG..." required>
+            </div>
+            <div class="input-group">
+                <label>CONTACT (WHATSAPP/DISCORD)</label>
+                <input type="text" id="regContact" placeholder="@username" required>
+            </div>
+            <button type="submit" class="glow-button">INITIALIZE UPLINK</button>
+        </form>
+        <a href="tournament.html" class="back-link">RETURN TO SCRIM HUB</a>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="main-logic.js"></script>
+</body>
+</html>

@@ -116,6 +116,123 @@ nav {
     font-weight: bold;
 }
 
+/* --- UPDATED MODAL OVERLAY --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;       /* Use 100% to ensure it covers the width */
+    height: 100vh;      /* Full viewport height */
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    
+    /* THE MAGIC CENTER TOOLS */
+    display: flex;
+    justify-content: center; /* Horizontal Center */
+    align-items: center;     /* Vertical Center */
+    
+    /* Hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+/* 1. THE OVERLAY (The Background) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 100000; /* Extremely high to stay on top */
+    
+    /* Center using Flexbox - the most reliable way */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+/* 2. THE BOX (The Popup) */
+.modal-box {
+    background: #0a0c10;
+    border: 1px solid #ff9900;
+    width: 90%;
+    max-width: 400px;
+    padding: 35px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 50px rgba(255, 153, 0, 0.3);
+    
+    /* THE DROP ANIMATION */
+    /* Start 50px higher than the center */
+    transform: translateY(-50px); 
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 3. THE ACTIVE STATE (When JS adds .active) */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.active .modal-box {
+    /* Moves to dead center */
+    transform: translateY(0); 
+}
+
+/* 4. THE CLOSE BUTTON */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.8rem;
+    color: #555;
+    cursor: pointer;
+}
+
+/* Specific centering for the Pending Modal */
+#pending-modal {
+    display: none; /* Default hidden */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    z-index: 99999 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+}
+
+#pending-modal.active {
+    display: flex !important; /* Forces it to show and center */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#pending-modal .modal-box {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: translateY(-30px) !important; /* Drop effect start */
+    margin: 0 !important;
+}
+
+#pending-modal.active .modal-box {
+    transform: translateY(0) !important; /* Drop effect end */
+}
+
 /* ABOUT SECTION STYLES */
 .protocol-card {
     background: rgba(255, 255, 255, 0.03);
@@ -314,6 +431,7 @@ nav {
 /* Responsive Masonry */
 @media (max-width: 900px) { .gallery-container { column-count: 2; } }
 @media (max-width: 600px) { .gallery-container { column-count: 1; } }
+
 /* NEWS TICKER STYLES */
 .news-ticker {
     background: rgba(0, 0, 0, 0.8);

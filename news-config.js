@@ -1,14 +1,11 @@
-/** 
- * FRX FRACTURE - LIVE NEWS CONFIG
- * Edit this file to update the side notification without touching HTML.
- */
+// * FRX FRACTURE - LIVE NEWS CONFIG Edit this file to update the side notification without touching HTML. */
 
 const CLAN_NEWS = {
     title: "CLAN UPDATE",
     message: "Weekend Trainings are now live. All members must NOT forget to join the Discord.",
     buttonText: "JOIN DISCORD",
     buttonLink: "https://discord.gg/nYF2F32E8T",
-    active: false, // Set to false to hide the notification
+    active: true, // Set to false to hide the notification
     
     // UI Settings
     delay: 3500, // Time in milliseconds before it slides in (3.5 seconds)

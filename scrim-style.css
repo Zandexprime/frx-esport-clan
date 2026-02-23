@@ -1,0 +1,482 @@
+:root {
+  --neon: #00f2ff;
+  --red: #ff3131;
+  --glass: rgba(0, 0, 0, 0.8);
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
+}
+/* Enable scrolling while keeping the HUD vibe */
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Outfit", sans-serif;
+  overflow-y: auto; /* ALLOW SCROLLING */
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom Alert Popup */
+#custom-alert {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(20, 0, 0, 0.95);
+  border: 2px solid var(--red);
+  padding: 30px;
+  border-radius: 20px;
+  z-index: 9999;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(255, 49, 49, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+#custom-alert h2 {
+  font-family: "Orbitron";
+  color: var(--red);
+  margin-bottom: 10px;
+}
+#custom-alert p {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.main-bg {
+  position: fixed;
+  inset: 0;
+  background: url("images/meta.jpg") no-repeat center center/cover;
+  filter: blur(15px);
+  transform: scale(1.1);
+  z-index: -2;
+}
+.vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, transparent 20%, #000 130%);
+  z-index: -1;
+}
+
+.dashboard-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* GLOWING MASSIVE TITLE */
+.main-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 20px;
+}
+.massive-title {
+  font-family: "Orbitron";
+  font-size: clamp(3rem, 10vw, 7rem);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+}
+.massive-title span {
+  color: var(--neon);
+  -webkit-text-stroke: 1.5px var(--neon);
+  color: transparent;
+  margin-left: 10px;
+  filter: drop-shadow(0 0 15px var(--neon));
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 20px;
+  flex: 1;
+}
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+.glass-card:hover {
+  border-color: var(--neon);
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+}
+
+.tag {
+  font-family: "Orbitron";
+  font-size: 0.7rem;
+  color: var(--neon);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+.center-tag {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* SIGNUP SECTION */
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+.signup-card {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(0, 242, 255, 0.3);
+}
+.center-text {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+.action-btns {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 30px;
+  font-family: "Orbitron";
+  font-weight: 900;
+  font-size: 0.8rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+}
+.btn.primary {
+  background: var(--neon);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon);
+}
+.btn.secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* TABLES & BADGES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: "Orbitron";
+  font-size: 0.8rem;
+}
+.badge {
+  background: rgba(255, 49, 49, 0.1);
+  color: var(--red);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.6rem;
+  font-weight: 900;
+  margin: 3px;
+  display: inline-block;
+  border: 1px solid rgba(255, 49, 49, 0.2);
+}
+
+/* FOOTER */
+.slim-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--neon);
+  color: #000;
+  padding: 8px 0;
+  font-family: "Orbitron";
+  font-weight: 900;
+  font-size: 0.65rem;
+  overflow: hidden;
+}
+.ticker-wrap {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 20s linear infinite;
+}
+@keyframes scroll {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+:root {
+  --neon: #00f2ff;
+  --red: #ff3131;
+  --glass: rgba(0, 0, 0, 0.85);
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+/* ... (Keep previous body, bg, and title styles) ... */
+
+/* NEWS FEED SPECIFIC */
+.news-feed-card {
+  height: 100%;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-scroll {
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.news-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.news-scroll::-webkit-scrollbar-thumb {
+  background: var(--neon);
+  border-radius: 10px;
+}
+
+.news-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 15px 0;
+}
+
+.news-item h4 {
+  font-family: "Orbitron";
+  color: var(--neon);
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+.news-item p {
+  font-size: 0.85rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+.news-item small {
+  color: #555;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+/* SIDEBAR BUTTONS */
+.full {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.signup-mini {
+  border: 1px solid rgba(0, 242, 255, 0.2);
+}
+
+/* ... (Keep previous grid and card styles) ... */
+
+/* ADMIN STYLES */
+.admin-trigger {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  opacity: 0.2;
+  cursor: pointer;
+  z-index: 999;
+  transition: 0.3s;
+  font-size: 1.2rem;
+}
+.admin-trigger:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+.admin-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.admin-box {
+  width: 350px;
+  border: 1px solid var(--neon);
+  box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+}
+
+.admin-box label {
+  display: block;
+  font-family: "Orbitron";
+  font-size: 0.6rem;
+  color: #555;
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+.admin-box input,
+.admin-box select,
+.admin-box textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: "Outfit";
+  margin-top: 5px;
+}
+.admin-box input:focus {
+  border-color: var(--neon);
+  outline: none;
+}
+
+.admin-actions {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.admin-actions label {
+  color: var(--red) !important;
+  font-weight: bold;
+}
+
+.admin-box .btn.secondary.full {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.7rem;
+}
+
+.admin-box .btn.secondary.full:hover {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+#controls-section::-webkit-scrollbar {
+  width: 3px;
+}
+#controls-section::-webkit-scrollbar-thumb {
+  background: var(--neon);
+}
+/* ... (Keep your existing admin styles) ... */
+
+/* News management list styling */
+.news-manage-list {
+  margin-top: 10px;
+  max-height: 120px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid var(--border);
+}
+
+.news-manage-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.news-manage-item span {
+  font-size: 0.65rem;
+  color: #ccc;
+  font-family: "Orbitron";
+}
+
+.del-news-btn {
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  font-size: 0.5rem;
+  padding: 2px 6px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.del-news-btn:hover {
+  background: var(--red);
+  color: white;
+}
+/* --- RESPONSIVE ENGINE --- */
+
+/* 1. Fix the Layout Grid */
+@media (max-width: 1200px) {
+  .focus-grid {
+    grid-template-columns: 1fr 1fr; /* Two columns for tablets */
+    gap: 15px;
+  }
+  .center-content {
+    grid-column: span 2; /* News takes full width at top/middle */
+    order: -1; /* Puts News at the very top of the grid */
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-wrapper {
+    padding: 15px;
+    overflow-y: auto; /* Allow scrolling on mobile */
+  }
+
+  .focus-grid {
+    grid-template-columns: 1fr; /* Stack everything in 1 column */
+  }
+
+  .center-content {
+    grid-column: span 1;
+  }
+
+  /* 2. Fix the Massive Title */
+  .massive-title {
+    font-size: 3.5rem; /* Shrink title so it fits phone screens */
+    letter-spacing: -2px;
+  }
+
+  /* 3. Adjust Glass Cards */
+  .glass-card {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 20px; /* Slightly tighter corners for small screens */
+  }
+
+  /* 4. Fix Tables (Leaderboard) */
+  .leaderboard table td {
+    font-size: 0.75rem; /* Smaller text for small screens */
+    padding: 8px 4px;
+  }
+
+  /* 5. Admin Panel (Make it fill the screen) */
+  .admin-box {
+    width: 90%;
+    margin: 10px;
+  }
+}
+
+/* 6. Fix for very small phones */
+@media (max-width: 480px) {
+  .massive-title {
+    font-size: 2.5rem;
+  }
+  .btn {
+    width: 100%; /* Buttons stack on mobile */
+    padding: 10px;
+  }
+}

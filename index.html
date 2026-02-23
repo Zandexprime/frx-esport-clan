@@ -10,13 +10,13 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://zandexprime.github.io/FRX-FRACTURE-Clan"> <meta property="og:title" content="FRX FRACTURE ⚡ SYSTEM ONLINE">
-<meta property="og:description" content="FIELD ARCHIVE // TACTICAL OPS // ELITE RECRUITMENT. Are you ready to fracture the matrix?">
+<meta property="og:description" content="FIELD ARCHIVE // TACTICAL OPS //. Are you ready to fracture the matrix?">
 
 <meta property="og:image" content="https://zandexprime.github.io/FRX-FRACTURE-Clan/images/meta-thumbnail.jpg">
 
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://zandexprime.github.io/FRX-FRACTURE-Clan">
-<meta property="twitter:title" content="FRX FRACTURE ⚡ SYSTEM ONLINE">
+<meta property="twitter:title" content="FRX FRACTURE ⚡ cLAN">
 <meta property="twitter:description" content="Join Elite BloodStrike organization. Tactical discipline. Absolute respect.">
 <meta property="twitter:image" content="https://zandexprime.github.io/FRX-FRACTURE-Clan/images/meta-thumbnail.jpg">
     
@@ -265,6 +265,7 @@
                 <a href="leaderboard.html" class="btn">View Leaders</a>
                 <a href="join.html" class="btn btn-filled">Join The Clan</a>
                 <a href="wars.html" class="btn">War Records</a>
+                <a href="scrims.html" class="btn btn-filled" onclick="handleTournamentAccess(event)"> Join The Scrims</a>
             </div>
         </div>
     </header>
@@ -384,7 +385,7 @@
 </div>
                 <h3>BATTLE FOR THE TOP</h3>
                 <p>Preparation for the upcoming scrim will soon open. Team training sessions start this Friday at 21:00 WAT.</p>
-                <span class="news-date">FEB 18, 2026</span>
+                <span class="news-date">FEB 18, 2026</span> 
             </div>
         </div>
     </section>
@@ -505,6 +506,18 @@
     <div id="lightbox-content" style="width: 80%; max-width: 900px; border: 1px solid var(--neon-blue); box-shadow: 0 0 50px rgba(0,242,255,0.3);"></div>
 </div>
 </div>
-
+<div id="pending-modal" class="modal-overlay">
+    <div class="modal-box"> <div class="modal-close" onclick="closePending()">&times;</div>
+        
+        <i class="fas fa-lock" style="color:#ff9900; font-size:2rem; margin-bottom:20px;"></i>
+        <h2 style="font-family:'Orbitron'; color:#ff9900; margin-bottom:10px;">REGISTRATION CLOSED</h2>
+        <p style="color:#888; font-size:0.9rem; line-height:1.6;">REGISTRATION PENDING.<br>The scrim is currently under maintenance.</p>
+        
+        <div style="margin-top:25px; border-top:1px solid rgba(255,153,0,0.2); padding-top:15px;">
+            <span style="font-size:0.6rem; letter-spacing:3px; color:#ff9900;">STATUS: PENDING...</span>
+        </div>
+    </div>
+</div>
+<script src="system-control.js"></script>
 </body>
 </html>

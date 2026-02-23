@@ -1,6 +1,6 @@
 const NEWS_ITEMS = [
     { tag: "WAR ALERT", text: "FRX ELITE VS TEAM X - FEB 25TH @ 21:00" },
-    { tag: "RECRUITMENT", text: "TRYOUTS ARE CURRENTLY OPEN FOR CLAN 1" },
+    { tag: "RECRUITMENT", text: "TRYOUTS ARE CURRENTLY OPEN" },
     { tag: "RANKING", text: "龙 GlORY REACHES TOP 100 REGIONAL SLAYERS" },
     { tag: "SYSTEM", text: "NEW WAR RECORDS PROTOCOL ESTABLISHED" }
 ];
