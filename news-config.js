@@ -1,4 +1,4 @@
-/**
+/** 
  * FRX FRACTURE - LIVE NEWS CONFIG
  * Edit this file to update the side notification without touching HTML.
  */

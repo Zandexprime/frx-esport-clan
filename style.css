@@ -20,6 +20,13 @@ body {
 }
 
 h1, h2, h3, .brand { font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* This allows the menu to wrap to a new line if needed */
+    padding: 20px 5%;
+}
 
 /* --- PRE-LOADER --- */
 #loader {
@@ -968,7 +975,6 @@ footer {
     font-size: 30px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000; transition: 0.3s ease;
 }
-
 
 
 /* --- RESPONSIVE QUERIES --- */
