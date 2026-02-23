@@ -5,7 +5,7 @@ const CLAN_NEWS = {
     message: "Weekend Trainings are now live. All members must NOT forget to join the Discord.",
     buttonText: "JOIN DISCORD",
     buttonLink: "https://discord.gg/nYF2F32E8T",
-    active: true, // Set to false to hide the notification
+    active: false, // Set to false to hide the notification
     
     // UI Settings
     delay: 3500, // Time in milliseconds before it slides in (3.5 seconds)
@@ -65,4 +65,5 @@ function closeModal() {
     if (modal) {
         modal.classList.remove('active');
     }
+
 }
