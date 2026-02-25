@@ -1,234 +1,161 @@
 // 1. FIREBASE CONFIG
 const firebaseConfig = {
-  apiKey: "AIzaSyCfZ-RslzccvwMKoI07sWKQgOz0t0lESjI",
-  authDomain: "frx-scrim.firebaseapp.com",
-  databaseURL: "https://frx-scrim-default-rtdb.firebaseio.com",
-  projectId: "frx-scrim",
-  storageBucket: "frx-scrim.firebasestorage.app",
-  messagingSenderId: "86915325223",
-  appId: "1:86915325223:web:938887f57e23bf6db65d02",
-  measurementId: "G-6HK0G3Z866"
+    apiKey: "AIzaSyCfZ-RslzccvwMKoI07sWKQgOz0t0lESjI",
+    authDomain: "frx-scrim.firebaseapp.com",
+    databaseURL: "https://frx-scrim-default-rtdb.firebaseio.com",
+    projectId: "frx-scrim",
+    storageBucket: "frx-scrim.firebasestorage.app",
+    messagingSenderId: "86915325223",
+    appId: "1:86915325223:web:938887f57e23bf6db65d02",
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
 const db = firebase.database();
 
-// 2. DEFAULT DATA HOLDER (Fallback if Firebase is empty)
-let SCRIM_DATA = {
-    isOnline: true,
-    mode: "SQUAD FIGHT / BATTLE ROYAL",
-    maps: "SHUTTER ISLAND",
-    reg: { current: 0, max: 16 },
-    rules: ["OFFICIAL FORMAT", "MAX 2 PC PLAYERS", "NO CHEATS/HACK"],
-    bannedGuns: ["RPK", "M1887", "MAGNUM", "ORIGIN-12", "AKIMBO-UZI"],
-    news: [
-        {
-            title: "SEASON 1 OPEN",
-            body: "Registration is CLOSED.",
-            date: "Feb 23"
-        },
-        {
-            title: "SECURITY UPDATE",
-            body: "Anti-cheat updated. Play fair or get blacklisted.",
-            date: "Feb 21",
-        },
-
-        {
-            title: "MAP ROTATION",
-            body: "Shutter Island is the main map for this weekend.",
-            date: "Feb 20",
-        },
-    ],
-
-    clans: [
-        { n: "ALPHA", w: 18, k: 250 },
-        { n: "GHOST", w: 14, k: 195 },
-        { n: "VULCAN", w: 10, k: 140 },
-        { n: "ALPHA", w: 18, k: 250 },
-        { n: "GHOST", w: 14, k: 195 },
-        { n: "VULCAN", w: 10, k: 140 },
-        { n: "ALPHA", w: 18, k: 250 },
-        { n: "GHOST", w: 14, k: 195 },
-        { n: "VULCAN", w: 10, k: 140 },
-    ],
-
-    bannedUsers: ["GREEDY MOPO (ESP)", "HACKER_X (AIM)"],
-
-    footerNews: "STAY ALERT • NO TOXICITY • REGISTER NOW • ",
-};
-
-// 3. MASTER RENDER FUNCTION
-function init() {
-    if (!SCRIM_DATA || !SCRIM_DATA.mode) return;
-
-    // A. Online Status
-    const statusMount = document.getElementById("status-mount");
-    if (statusMount) {
-        statusMount.innerHTML = `
-            <div class="status-indicator" style="display:inline-flex; align-items:center; gap:8px; background:rgba(0,0,0,0.5); padding:6px 15px; border-radius:50px; border:1px solid ${SCRIM_DATA.isOnline ? "var(--neon)" : "#555"}">
-                <div style="width:8px; height:8px; border-radius:50%; background:${SCRIM_DATA.isOnline ? "var(--neon)" : "#555"}; box-shadow:${SCRIM_DATA.isOnline ? "0 0 10px var(--neon)" : "none"}"></div>
-                <span style="font-family:Orbitron; font-size:0.7rem;">SCRIM ${SCRIM_DATA.isOnline ? "ONLINE" : "OFFLINE"}</span>
-            </div>`;
-    }
-
-    // B. Left Panel (Intel, Rules, Guns)
-    document.getElementById("js-info").innerHTML =
-        `<div class="tag">INTEL</div><p>MODE: <b>${SCRIM_DATA.mode}</b></p><p>MAP: <b>${SCRIM_DATA.maps}</b></p>`;
-    document.getElementById("js-rules").innerHTML =
-        `<div class="tag">PROTOCOL</div>${SCRIM_DATA.rules.map((r) => `<div style="font-size:0.75rem; margin-bottom:5px; border-left:2px solid var(--neon); padding-left:8px;">${r}</div>`).join("")}`;
-    document.getElementById("js-banned-guns").innerHTML =
-        `<div class="tag">ARSENAL BANS 🚫</div>${SCRIM_DATA.bannedGuns.map((g) => `<span class="badge">${g}</span>`).join("")}`;
-
-    // C. News Feed (Center)
-    const newsFeed = document.getElementById("js-news-feed");
-    if (newsFeed) {
-        newsFeed.innerHTML = (SCRIM_DATA.news || [])
-            .map(
-                (item) => `
-            <div class="news-item" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding: 10px 0;">
-                <small style="color:#555; font-size:0.7rem;">${item.date}</small>
-                <h4 style="color:var(--neon); font-family:Orbitron; font-size:0.8rem; margin: 3px 0;">${item.title}</h4>
-                <p style="font-size:0.8rem; color:#ccc; line-height:1.4;">${item.body}</p>
-            </div>`,
-            )
-            .join("");
-    }
-
-    // D. Right Panel (Slots, Board, Blacklist)
-    const per = (SCRIM_DATA.reg.current / SCRIM_DATA.reg.max) * 100;
-    document.getElementById("js-slots").innerHTML =
-        `<div class="tag">CAPACITY</div><div style="background:rgba(255,255,255,0.05); height:8px; border-radius:10px; overflow:hidden; margin-bottom:8px;"><div style="width:${per}%; background:var(--neon); height:100%; box-shadow:0 0 10px var(--neon)"></div></div><small>${SCRIM_DATA.reg.current}/${SCRIM_DATA.reg.max} SLOTS</small>`;
-    document.getElementById("js-board").innerHTML = (SCRIM_DATA.clans || [])
-        .map(
-            (c) =>
-                `<tr><td>${c.n}</td><td style="color:var(--neon)">${c.w}</td><td>${c.k}</td></tr>`,
-        )
-        .join("");
-    document.getElementById("js-blacklist").innerHTML =
-        `<div class="tag" style="color:var(--red)">BLACKLIST 💀</div>${(SCRIM_DATA.bannedUsers || []).map((u) => `<div style="color:var(--red); font-size:0.7rem; margin-bottom:4px;">${u}</div>`).join("")}`;
-
-    // E. Footer
-    document.getElementById("js-footer").innerHTML =
-        `<div class="ticker-wrap" style="display:inline-block; white-space:nowrap; animation: scroll 20s linear infinite;">${SCRIM_DATA.footerNews}</div>`;
-
-    // F. ADMIN NEWS MANAGER RENDER
-    const adminNewsList = document.getElementById("js-admin-news-list");
-    if (adminNewsList) {
-        adminNewsList.innerHTML = (SCRIM_DATA.news || [])
-            .map(
-                (item, index) => `
-            <div class="news-manage-item">
-                <span>${item.title}</span>
-                <button class="del-news-btn" onclick="deleteNews(${index})">DEL</button>
-            </div>`,
-            )
-            .join("");
-    }
-
-    // G. Scrolling Logic
-    document.body.style.overflowY = "visible";
-    document.documentElement.style.overflowY = "visible";
-}
-
-// 4. FIREBASE REAL-TIME SYNC
+// 2. MASTER SYNC
 db.ref("scrim_hub").on("value", (snapshot) => {
     const data = snapshot.val();
-    if (data) {
-        SCRIM_DATA = data;
-        init();
-    }
+    if (!data) return;
+
+    // RENDER MAIN SITE
+    renderStatus(data.isOnline);
+    renderIntel(data.mode, data.maps);
+    renderNewsFeed(data.news);
+    renderSlots(data.registrations, data.reg?.max);
+    renderBanList(data.bannedUsers);
+    renderLeaderboard(data.clans);
+
+    // RENDER ADMIN HELPERS
+    renderAdminNewsManager(data.news);
+    renderAdminClanManager(data.clans);
 });
 
-// 5. ADMIN CONTROLS & AUTH
-function toggleAdmin() {
-    const panel = document.getElementById("admin-panel");
-    panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+// 3. RENDERERS (THE VISUALS)
+function renderStatus(isOnline) {
+    const mount = document.getElementById("status-mount");
+    if (mount) {
+        mount.innerHTML = `<div class="status-indicator" style="display:inline-flex; align-items:center; gap:8px; background:rgba(0,0,0,0.5); padding:6px 15px; border-radius:50px; border:1px solid ${isOnline ? "var(--neon)" : "#555"}">
+            <div style="width:8px; height:8px; border-radius:50%; background:${isOnline ? "var(--neon)" : "#555"}; box-shadow:${isOnline ? "0 0 10px var(--neon)" : "none"}"></div>
+            <span style="font-family:Orbitron; font-size:0.7rem;">SCRIM ${isOnline ? "ONLINE" : "OFFLINE"}</span></div>`;
+    }
 }
 
+function renderNewsFeed(news) {
+    const feed = document.getElementById("js-news-feed");
+    if (!feed || !news) return;
+    feed.innerHTML = Object.values(news).reverse().map(item => `
+        <div class="news-item" style="display:flex; align-items:center; gap:15px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <small style="color:#555; font-size:0.6rem;">${item.date || 'NOW'}</small>
+            <h4 style="color:var(--neon); font-size:0.8rem; margin:0;">${item.title}</h4>
+            <p style="font-size:0.75rem; color:#aaa; margin:0; flex-grow:1; text-align:right;">${item.body}</p>
+        </div>`).join("");
+}
+
+function renderBanList(bans) {
+    const mount = document.getElementById("js-blacklist");
+    if (!mount) return;
+    mount.innerHTML = '<div class="tag" style="color:var(--red); border-color:var(--red);">BLACKLIST 💀</div>';
+    if (!bans) return mount.innerHTML += `<div style="color:#555; font-size:0.7rem; padding:10px;">SYSTEM_CLEAN</div>`;
+    
+    Object.keys(bans).forEach(id => {
+        const u = bans[id];
+        mount.innerHTML += `<div style="color:var(--red); font-size:0.75rem; margin-bottom:6px; display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,0,0,0.1);">
+            <span>${u.n} <small>(${u.r})</small></span>
+            <button onclick="removeBan('${id}')" class="admin-only-btn" style="color:white; background:red; border:none; font-size:8px; cursor:pointer;">UNBAN</button>
+        </div>`;
+    });
+}
+
+// 4. ADMIN FUNCTIONS (THE ACTIONS)
+function postNews() {
+    const t = document.getElementById("new-news-title");
+    const b = document.getElementById("new-news-body");
+    if (!t.value || !b.value) return showToast("EMPTY FIELDS");
+
+    db.ref("scrim_hub/news").push({
+        title: t.value.toUpperCase(),
+        body: b.value,
+        date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase()
+    }).then(() => { t.value = ""; b.value = ""; showToast("BROADCAST_SENT"); });
+}
+
+function deleteNews(id) {
+    systemAlert("DELETE", "REMOVE THIS NEWS ITEM?", false, (confirmed) => {
+        if (confirmed) db.ref("scrim_hub/news/" + id).remove().then(() => showToast("DELETED"));
+    });
+}
+
+function addBan() {
+    const n = document.getElementById("ban-player-name");
+    const r = document.getElementById("ban-reason");
+    if (!n.value) return showToast("ENTER NAME");
+    db.ref("scrim_hub/bannedUsers").push({ n: n.value.toUpperCase(), r: r.value.toUpperCase() || "BANNED" })
+    .then(() => { n.value = ""; r.value = ""; showToast("BANNED"); });
+}
+
+function removeBan(id) {
+    systemAlert("UNBAN", "RESTORE THIS PLAYER?", false, (ok) => {
+        if (ok) db.ref("scrim_hub/bannedUsers/" + id).remove().then(() => showToast("RESTORED"));
+    });
+}
+
+async function updateLive() {
+    const btn = document.getElementById("sync-btn");
+    btn.innerText = "SYNCING...";
+    try {
+        await db.ref("scrim_hub").update({
+            isOnline: document.getElementById("edit-online").value === "true",
+            mode: document.getElementById("edit-mode").value.toUpperCase(),
+            footerNews: document.getElementById("edit-footer-news").value,
+            "reg/max": parseInt(document.getElementById("edit-slots").value) || 16
+        });
+        showToast("SYSTEM_SYNCED");
+        btn.innerText = "SYNC_TO_SITE";
+    } catch (e) { btn.innerText = "FAILED"; }
+}
+
+// 5. MODAL SYSTEM
+function systemAlert(title, message, isPrompt = false, callback = null) {
+    const modal = document.getElementById("scrim-modal");
+    if (!modal) return;
+    document.getElementById("modal-title").innerText = title;
+    document.getElementById("modal-body").innerText = message;
+    const input = document.getElementById("modal-input");
+    input.style.display = isPrompt ? "block" : "none";
+    modal.style.display = "flex";
+    document.getElementById("modal-confirm-btn").onclick = () => {
+        const val = isPrompt ? input.value : true;
+        if (callback) callback(val);
+        closeModal();
+    };
+}
+
+function closeModal() { document.getElementById("scrim-modal").style.display = "none"; }
+function toggleAdmin() { 
+    const p = document.getElementById("admin-panel");
+    p.style.display = (p.style.display === "flex") ? "none" : "flex";
+}
+function showToast(msg) {
+    const t = document.getElementById("admin-toast");
+    t.innerText = msg; t.style.display = "block";
+    setTimeout(() => t.style.display = "none", 3000);
+}
+// Auth
 function checkAuth() {
-    const pass = document.getElementById("admin-pass").value;
-    const alertBox = document.getElementById("custom-alert");
-    if (pass === "1234") {
+    if (document.getElementById("admin-pass").value === "123456") {
         document.getElementById("login-section").style.display = "none";
         document.getElementById("controls-section").style.display = "block";
-    } else {
-        alertBox.style.display = "block";
-    }
+        document.body.classList.add("is-admin");
+    } else { systemAlert("DENIED", "WRONG CODE"); }
 }
 
-function closeAlert() {
-    document.getElementById("custom-alert").style.display = "none";
+// Support Renderers (Internal)
+function renderAdminNewsManager(news) {
+    const mount = document.getElementById("js-admin-news-list");
+    if (!mount || !news) return;
+    mount.innerHTML = Object.keys(news).map(id => `
+        <div style="display:flex; justify-content:space-between; background:#111; padding:5px; margin-top:2px; border-left:2px solid var(--neon);">
+            <span style="font-size:0.6rem;">${news[id].title}</span>
+            <button onclick="deleteNews('${id}')" style="color:red; background:none; border:none; cursor:pointer;">[X]</button>
+        </div>`).join("");
 }
-
-// 6. LIVE UPDATE FUNCTIONS
-function updateLive() {
-    const updatedData = {
-        ...SCRIM_DATA,
-        isOnline: document.getElementById("edit-online").value === "true",
-        reg: {
-            current: parseInt(document.getElementById("edit-slots").value) || 0,
-            max: SCRIM_DATA.reg.max,
-        },
-        mode: document.getElementById("edit-mode").value,
-        footerNews: document.getElementById("edit-footer-news").value,
-    };
-    db.ref("scrim_hub").update(updatedData);
-}
-
-function postNews() {
-    const titleIn = document.getElementById("new-news-title");
-    const bodyIn = document.getElementById("new-news-body");
-    if (!titleIn.value || !bodyIn.value) return alert("Fill all fields!");
-
-    const newEntry = {
-        title: titleIn.value.toUpperCase(),
-        body: bodyIn.value,
-        date: new Date().toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-        }),
-    };
-
-    if (!SCRIM_DATA.news) SCRIM_DATA.news = [];
-    SCRIM_DATA.news.unshift(newEntry);
-    if (SCRIM_DATA.news.length > 10) SCRIM_DATA.news.pop();
-
-    db.ref("scrim_hub/news")
-        .set(SCRIM_DATA.news)
-        .then(() => {
-            titleIn.value = "";
-            bodyIn.value = "";
-        });
-}
-
-function deleteNews(index) {
-    if (confirm("Delete this news post?")) {
-        SCRIM_DATA.news.splice(index, 1);
-        db.ref("scrim_hub/news").set(SCRIM_DATA.news);
-    }
-}
-
-// 7. DANGER ZONE
-let clearTimer;
-function armClear() {
-    const container = document.getElementById("clear-container");
-    container.innerHTML = `<button class="btn primary full" style="background:var(--red);" onclick="executeClear()">CONFIRM DELETE? (3s)</button>`;
-    clearTimer = setTimeout(() => {
-        resetClearBtn();
-    }, 3000);
-}
-
-function resetClearBtn() {
-    const container = document.getElementById("clear-container");
-    container.innerHTML = `<button class="btn secondary full" id="clear-btn" onclick="armClear()">CLEAR LEADERBOARD</button>`;
-}
-
-function executeClear() {
-    db.ref("scrim_hub/clans")
-        .set([])
-        .then(() => {
-            resetClearBtn();
-        });
-}
-
-window.onload = init;
