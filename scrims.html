@@ -3,120 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRX | SCRIM HUB</title>
-     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="stylesheet" href="scrim-style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>FRX SCRIM | HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon: #00f2ff;
+            --red: #ff0050;
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .tag {
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--neon);
+            border-bottom: 1px solid var(--neon);
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Admin Trigger */
+        .admin-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 999;
+            filter: grayscale(1);
+            transition: 0.3s;
+        }
+        .admin-trigger:hover { filter: grayscale(0); transform: scale(1.2); }
+
+        /* Admin Overlay */
+        .admin-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+            padding: 10px;
+            margin-top: 5px;
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            box-sizing: border-box;
+        }
+
+        .glow-btn {
+            background: var(--neon);
+            color: black;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-weight: 900;
+            font-family: 'Orbitron';
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 0 15px rgba(0,242,255,0.3);
+        }
+
+        /* Hide buttons unless logged in */
+        .admin-only-btn { display: none; }
+        body.is-admin .admin-only-btn { display: block; }
+
+        #admin-toast {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neon);
+            color: black;
+            padding: 10px 25px;
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            z-index: 10001;
+            border-radius: 50px;
+        }
+    </style>
 </head>
 <body>
-    <div class="main-bg"></div>
-    <div class="vignette"></div>
 
-    <div class="dashboard-wrapper">
-        <header class="main-header">
-            <h1 class="massive-title">FRX<span>SCRIMS</span></h1>
+    <div id="admin-toast">SYSTEM_ALERT: WAITING...</div>
+
+    <div style="max-width: 1000px; margin: auto; padding: 40px 20px;">
+        
+        <header style="text-align: center; margin-bottom: 50px;">
+            <h1 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 0; letter-spacing: 5px;">FRX <span style="color: var(--neon);">SCRIM</span></h1>
             <div id="status-mount"></div>
         </header>
 
-        <div class="focus-grid">
-            <aside class="panel side">
-                <div class="glass-card" id="js-slots"></div>
-                <div class="glass-card" id="js-info"></div>
-                <div class="glass-card" id="js-rules"></div>
-                <div class="glass-card" id="js-banned-guns"></div>
-                <div class="glass-card signup-mini">
-                    <div class="tag">SCRIM</div>
-                    <button class="btn primary full" onclick="location.href='register.html'">RESERVE SLOT</button>
-                    <button class="btn secondary full" onclick="location.href='signup.html'">SIGN UP</button>
-                </div>
-            </aside>
-
-            <main class="center-content">
-                <div class="glass-card news-feed-card">
-                    <div class="tag center-tag">CENTRAL_NEWS_FEED</div>
-                    <div class="news-scroll" id="js-news-feed">
-                        </div>
-                </div>
-            </main>
-
-            <aside class="panel side">
-                
-                <div class="glass-card leaderboard">
-                    <div class="tag">SCRIM LEADERBOARD</div>
-                    <table>
-                        <thead><tr><th>CLAN</th><th>W</th><th>K</th></tr></thead>
-                        <tbody id="js-board"></tbody>
-                    </table>
-                </div>
-                <div class="glass-card" id="js-blacklist"></div>
-            </aside>
-        </div>
-    </div>
-
-    <footer class="slim-footer" id="js-footer"></footer>
-<div class="admin-trigger" onclick="toggleAdmin()">⚙️</div>
-
-<div id="admin-panel" class="admin-overlay">
-    <div class="glass-card admin-box">
-        <div class="tag">ADMIN ACCESS</div>
-        
-        <div id="login-section">
-            <input type="password" id="admin-pass" placeholder="ENTER ACCESS CODE">
-            <button class="btn primary full" onclick="checkAuth()">UNLOCK</button>
-            <button class="btn secondary full" style="margin-top: 10px; opacity: 0.6;" onclick="toggleAdmin()">CANCEL</button>
-        </div>
-
-        <div id="controls-section" style="display:none; max-height: 80vh; overflow-y: auto; padding-right: 10px;">
-            <div class="tag">LIVE HUB CONTROL</div>
+        <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px;">
             
-            <label>Scrim Status</label>
-            <select id="edit-online" onchange="updateLive()">
-                <option value="true">ONLINE</option>
-                <option value="false">OFFLINE</option>
-            </select>
-
-            <label>Current Slots</label>
-            <input type="number" id="edit-slots" oninput="updateLive()">
-
-            <label>Intel (Mode)</label>
-            <input type="text" id="edit-mode" oninput="updateLive()">
-
-            <div style="margin-top: 20px; padding: 12px; background: rgba(0,242,255,0.05); border-radius: 15px; border: 1px solid rgba(0,242,255,0.1);">
-                <label style="color: var(--neon); margin-top: 0;">POST NEW UPDATE</label>
-                <input type="text" id="new-news-title" placeholder="News Title...">
-                <textarea id="new-news-body" placeholder="Update details..." style="height: 50px;"></textarea>
-                <button class="btn primary full" style="margin-top: 10px; font-size: 0.7rem;" onclick="postNews()">SEND TO HUB</button>
-            </div>
-
-            <label>Manage Live News</label>
-            <div id="js-admin-news-list" class="news-manage-list">
+            <section>
+                <div id="js-info" class="glass-card"></div>
+                <div class="glass-card">
+                    <div class="tag">BROADCASTS</div>
+                    <div id="js-news-feed"></div>
                 </div>
+            </section>
 
-            <label>Footer Ticker</label>
-            <textarea id="edit-footer-news" oninput="updateLive()"></textarea>
-
-            <div class="admin-actions">
-                <label>Danger Zone</label>
-                <div id="clear-container">
-                    <button class="btn secondary full" id="clear-btn" onclick="armClear()">CLEAR LEADERBOARD</button>
+            <aside>
+                <div id="js-slots" class="glass-card"></div>
+                <div id="js-blacklist" class="glass-card" style="border-color: rgba(255,0,80,0.2);">
+                    <div class="tag" style="color: var(--red);">BLACKLIST 💀</div>
                 </div>
-            </div>
-
-            <button class="btn secondary full" style="margin-top: 20px;" onclick="toggleAdmin()">CLOSE PANEL</button>
+            </aside>
         </div>
     </div>
-</div>
-<div id="custom-alert">
-    <h2>ACCESS DENIED</h2>
-    <p>INVALID SECURITY PROTOCOL DETECTED.</p>
-    <button class="btn secondary" onclick="closeAlert()">TRY AGAIN</button>
-</div>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
-<script src="scrim-logic.js"></script>
+    <div class="admin-trigger" onclick="toggleAdmin()">⚙️</div>
+
+    <div id="admin-panel" class="admin-overlay">
+        <div class="glass-card" style="width: 360px; max-height: 90vh; overflow-y: auto; border: 1px solid var(--neon);">
+            
+            <div id="login-section">
+                <div class="tag">SECURE_LOGIN</div>
+                <input type="password" id="admin-pass" placeholder="ENTER ACCESS CODE">
+                <button class="glow-btn" onclick="checkAuth()">AUTHORIZE</button>
+                <button onclick="toggleAdmin()" style="background:none; border:none; color:#555; width:100%; margin-top:10px; cursor:pointer;">EXIT</button>
+            </div>
+
+            <div id="controls-section" style="display: none;">
+                <div class="tag">SYSTEM_COMMAND</div>
+                
+                <label>SCRIM STATUS</label>
+                <select id="edit-online">
+                    <option value="true">ONLINE</option>
+                    <option value="false">OFFLINE</option>
+                </select>
+
+                <label>MAX SLOTS</label>
+                <input type="number" id="edit-slots" placeholder="16">
+
+                <label>MODE & MAP</label>
+                <input type="text" id="edit-mode" placeholder="SQUAD / SHUTTER ISLAND">
+
+                <label>FOOTER TICKER</label>
+                <textarea id="edit-footer-news"></textarea>
+
+                <button id="sync-btn" class="glow-btn" onclick="updateLive()">SYNC_TO_SITE</button>
+
+                <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
+
+                <div class="tag">ADD_BROADCAST</div>
+                <input type="text" id="new-news-title" placeholder="TITLE">
+                <textarea id="new-news-body" placeholder="MESSAGE BODY"></textarea>
+                <button class="glow-btn" style="background:none; border:1px solid var(--neon); color:var(--neon);" onclick="postNews()">SEND_TO_HUB</button>
+                
+                <div id="js-admin-news-list" style="margin-top:10px; max-height:100px; overflow-y:auto;"></div>
+
+                <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
+
+                <div class="tag" style="color: var(--red);">BLACKLIST_COMMAND</div>
+                <input type="text" id="ban-player-name" placeholder="PLAYER NAME">
+                <input type="text" id="ban-reason" placeholder="REASON">
+                <button class="glow-btn" style="background:var(--red); color:white;" onclick="addBan()">EXECUTE_BAN</button>
+
+                <button onclick="toggleAdmin()" style="background:none; border:none; color:#555; width:100%; margin-top:20px; cursor:pointer;">DISCONNECT</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="scrim-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center;">
+        <div style="background:#0a0a0a; border:1px solid var(--neon); padding:25px; border-radius:15px; width:90%; max-width:400px; text-align:center;">
+            <h2 id="modal-title" style="color:var(--neon); font-family: 'Orbitron'; font-size: 1rem;">SYSTEM_ALERT</h2>
+            <p id="modal-body" style="color:#aaa; font-size:0.8rem; margin-bottom:20px;"></p>
+            <input type="text" id="modal-input" style="display:none; margin-bottom: 20px;">
+            <div style="display:flex; gap:10px;">
+                <button id="modal-confirm-btn" style="flex:1; padding:12px; background:var(--neon); border:none; font-family:'Orbitron'; font-weight:bold; cursor:pointer;">CONFIRM</button>
+                <button onclick="closeModal()" style="flex:1; padding:12px; background:#222; border:none; color:white; font-family:'Orbitron'; cursor:pointer;">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    
+    <script src="scrim-logic.js"></script>
 </body>
 </html>
